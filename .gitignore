@@ -1,0 +1,68 @@
+[bB]uild/
+out/
+out/coverage/*
+cmake-build-*/
+conan-cache/
+vcpkg_installed/
+
+*.log
+*.pdb
+.DS_Store
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+# IDE files
+.vs/
+.idea/
+
+#Clangd cache folder
+.cache/
+
+*.bak
+*.swp
+*~
+_ReSharper*
+*.log
+
+# OS Generated Files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.Trash-*
+$RECYCLE.BIN/
+.TemporaryItems
+ehthumbs.db
+Thumbs.db
+CMakeUserPresets.json
