@@ -4,6 +4,7 @@ out/coverage/*
 cmake-build-*/
 conan-cache/
 vcpkg_installed/
+thirdParty/*
 
 *.log
 *.pdb

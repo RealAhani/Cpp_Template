@@ -1,0 +1,227 @@
+{
+    "version": 4,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 25,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "conf-clang-common",
+            "description": "General settings that apply to all configurations",
+            "hidden": true,
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/build/${hostSystemName}/Desktop",
+            "installDir": "${sourceDir}/build/install/${hostSystemName}/Desktop",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_COLOR_DIAGNOSTICS": "ON"
+            }
+        },
+        {
+            "name": "conf-unixlike-common",
+            "description": "Unix-like OS settings for gcc and clang toolchains",
+            "hidden": true,
+            "inherits": "conf-clang-common",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                "VCPKG_TARGET_TRIPLET": "x64-osx-dynamic"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+                    "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+                }
+            }
+        },
+        {
+            "name": "conf-clang-windows-common",
+            "description": "Windows settings for MSBuild toolchain that apply to msvc and clang",
+            "hidden": true,
+            "inherits": "conf-clang-common",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                "VCPKG_TARGET_TRIPLET": "x64-windows"
+            },
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "toolset": {
+                "value": "host=x64",
+                "strategy": "external"
+            }
+        },
+        {
+            "name": "win-clang-safe",
+            "displayName": "Windows Clang Safe",
+            "description": "Target Windows with the clang compiler, debug build type",
+            "inherits": "conf-clang-windows-common",
+            "cacheVariables": {
+                "PRESET_NAME": "Safe",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "P_INTERNAL_LIB_TYPE": "STATIC",
+                "HAS_EXE": "ON",
+                "HAS_LIB": "ON",
+                "HAS_CONSOLE": "ON",
+                "P_CXX_VERSION": "20",
+                "P_C_VERSION": "11",
+                "P_CXX_EXTENTION": "ON",
+                "P_CXX_STANDARD": "ON",
+                "WERROR_FLAG": "ON",
+                "HAS_STATIC_ANALYZER": "ON",
+                "HAS_SAN": "ON",
+                "HAS_BENCHMARK": "ON",
+                "HAS_PCH": "ON",
+                "HAS_TEST": "OFF",
+                "HAS_UNITY_BUILD": "OFF",
+                "HAS_PACKAGE": "OFF"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioSettings/CMake/1.0": {
+                    "intelliSenseMode": "windows-clang-x64"
+                }
+            }
+        },
+        {
+            "name": "win-clang-test",
+            "displayName": "Windows Clang Test",
+            "description": "Target Windows with the clang compiler, debug build type",
+            "inherits": "conf-clang-windows-common",
+            "cacheVariables": {
+                "PRESET_NAME": "Test",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "P_INTERNAL_LIB_TYPE": "STATIC",
+                "HAS_EXE": "ON",
+                "HAS_LIB": "ON",
+                "HAS_CONSOLE": "ON",
+                "P_CXX_VERSION": "20",
+                "P_C_VERSION": "11",
+                "P_CXX_EXTENTION": "ON",
+                "P_CXX_STANDARD": "ON",
+                "WERROR_FLAG": "OFF",
+                "HAS_STATIC_ANALYZER": "OFF",
+                "HAS_SAN": "OFF",
+                "HAS_BENCHMARK": "ON",
+                "HAS_PCH": "ON",
+                "HAS_TEST": "ON",
+                "HAS_UNITY_BUILD": "OFF",
+                "HAS_PACKAGE": "OFF"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioSettings/CMake/1.0": {
+                    "intelliSenseMode": "windows-clang-x64"
+                }
+            }
+        },
+        {
+            "name": "win-clang-release",
+            "displayName": "Windows Clang Release",
+            "description": "Target Windows with the clang compiler, release build type",
+            "inherits": "conf-clang-windows-common",
+            "cacheVariables": {
+                "PRESET_NAME": "",
+                "VCPKG_INSTALL_OPTIONS": "--no-print-usage",
+                "CMAKE_BUILD_TYPE": "Release",
+                "P_INTERNAL_LIB_TYPE": "STATIC",
+                "HAS_EXE": "ON",
+                "HAS_LIB": "ON",
+                "HAS_CONSOLE": "ON",
+                "P_CXX_VERSION": "20",
+                "P_C_VERSION": "11",
+                "P_CXX_EXTENTION": "ON",
+                "P_CXX_STANDARD": "ON",
+                "WERROR_FLAG": "OFF",
+                "HAS_STATIC_ANALYZER": "OFF",
+                "HAS_SAN": "OFF",
+                "HAS_BENCHMARK": "OFF",
+                "HAS_PCH": "ON",
+                "HAS_TEST": "OFF",
+                "HAS_UNITY_BUILD": "ON",
+                "HAS_PACKAGE": "ON"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioSettings/CMake/1.0": {
+                    "intelliSenseMode": "windows-clang-x64"
+                }
+            }
+        },
+        {
+            "name": "unix-clang-safe",
+            "displayName": "Unix Clang Safe",
+            "description": "Target Unix-like OS with the clang compiler, debug build type",
+            "inherits": "conf-unixlike-common",
+            "cacheVariables": {
+                "PRESET_NAME": "Safe",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "P_INTERNAL_LIB_TYPE": "STATIC",
+                "HAS_EXE": "ON",
+                "HAS_LIB": "ON",
+                "HAS_CONSOLE": "ON",
+                "P_CXX_VERSION": "20",
+                "P_C_VERSION": "11",
+                "P_CXX_EXTENTION": "ON",
+                "P_CXX_STANDARD": "ON",
+                "WERROR_FLAG": "ON",
+                "HAS_STATIC_ANALYZER": "ON",
+                "HAS_SAN": "ON",
+                "HAS_BENCHMARK": "ON",
+                "HAS_PCH": "ON",
+                "HAS_TEST": "OFF",
+                "HAS_UNITY_BUILD": "OFF",
+                "HAS_PACKAGE": "OFF"
+            }
+        },
+        {
+            "name": "unix-clang-test",
+            "displayName": "Unix Clang Test",
+            "description": "Target Unix-like OS with the clang compiler, debug build type",
+            "inherits": "conf-unixlike-common",
+            "cacheVariables": {
+                "PRESET_NAME": "Test",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "P_INTERNAL_LIB_TYPE": "STATIC",
+                "HAS_EXE": "ON",
+                "HAS_LIB": "ON",
+                "HAS_CONSOLE": "ON",
+                "P_CXX_VERSION": "20",
+                "P_C_VERSION": "11",
+                "P_CXX_EXTENTION": "ON",
+                "P_CXX_STANDARD": "ON",
+                "WERROR_FLAG": "OFF",
+                "HAS_STATIC_ANALYZER": "OFF",
+                "HAS_SAN": "OFF",
+                "HAS_BENCHMARK": "ON",
+                "HAS_PCH": "ON",
+                "HAS_TEST": "ON",
+                "HAS_UNITY_BUILD": "OFF",
+                "HAS_PACKAGE": "OFF"
+            }
+        },
+        {
+            "name": "unix-clang-release",
+            "displayName": "Unix Clang Release",
+            "description": "Target Unix-like OS with the clang compiler, debug build type",
+            "inherits": "conf-unixlike-common",
+            "cacheVariables": {
+                "PRESET_NAME": "",
+                "CMAKE_BUILD_TYPE": "Release",
+                "P_INTERNAL_LIB_TYPE": "STATIC",
+                "HAS_EXE": "ON",
+                "HAS_LIB": "ON",
+                "HAS_CONSOLE": "ON",
+                "P_CXX_VERSION": "20",
+                "P_C_VERSION": "11",
+                "P_CXX_EXTENTION": "ON",
+                "P_CXX_STANDARD": "ON",
+                "WERROR_FLAG": "OFF",
+                "HAS_STATIC_ANALYZER": "OFF",
+                "HAS_SAN": "OFF",
+                "HAS_BENCHMARK": "OFF",
+                "HAS_PCH": "ON",
+                "HAS_TEST": "OFF",
+                "HAS_UNITY_BUILD": "ON",
+                "HAS_PACKAGE": "ON"
+            }
+        }
+    ]
+}
