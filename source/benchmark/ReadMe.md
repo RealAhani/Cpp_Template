@@ -9,5 +9,8 @@ this file.
 Benchmark.hh header is a header only lib ,so this is link and use through the pch 
 
 Profiler.hh is a header for the purpose to turn on or off the profiling
-this is set through HAS_BENCHMARK in cmake-preset
+this is set through HAS_BENCHMARK in cmake-preset and in config.hh
+and activate with PROFILING macro in config.hh
 this Profiler.hh is included in config.h
+
+the output file should be on out/bin but maybe created in root of the project directory

@@ -12,7 +12,7 @@
 // out/{ARCH}/bin Load this file with chrome://tracing
 
 // Benchmark is ON
-#if (PROFILER == 1)
+#if (PROFILING == 1)
 // Profile the current function
 #define PROFILE() BENCHMARK(__FUNCTION__)
 // Profile the current scoop use this macro inside { }

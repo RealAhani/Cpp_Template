@@ -32,7 +32,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 {
     // benchmark is activate from presets and with PROFILE or
     // PROFILE_SCOP macro`s .
-    // PROFILE();
+    PROFILE();
     using namespace std::string_literals;
     using namespace myproject::cmake;
     // __________ Project Informations __________
@@ -129,7 +129,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     // Main loop
     while (!WindowShouldClose() && !isQuit)
     {
-        // PROFILE_SCOPE("LOOP");
+        PROFILE_SCOPE("LOOP");
         // Input managment with raylib
         if (IsKeyPressed(KEY_ESCAPE)) [[unlikely]]
         {
