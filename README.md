@@ -1,6 +1,6 @@
-** Use this cmake/c++ template for creating Application for desktop and android **
+**Use this cmake/c++ template for creating Application for desktop and android**
 
-## Prerequisite for desktop development (win/mac/linux) 
+## Prerequisite (win/mac/linux) 
  - LLVM 19 or greater (clang++)
  - clang-format , clang-tidy , cmake-format 
  - vcpkg (catch2) 
@@ -14,9 +14,9 @@
  - SDK 34
  - Build_toold 29.0.3
  - JDK 8
- ### the android command line tool and all env variable should be set and availble on path  
+ ### the android command line tool and all env variables should be set and availble on path  
 
- ### variable that need
+ ### Env variables
   - VCPKG_ROOT
   - ANDROID_HOME
   - ANDROID_NDK_HOME
@@ -25,11 +25,10 @@
   - JAVA_HOME
   - platform-tools should be on path
 
-
 --------------------------------------------------------------------------------
-### put all the assets like .wav .png ,etc ... on resources/assets 
+*put all the assets like .wav .png ,etc ... on resources/assets* 
 
-# for project configuration just modify cmakepreset.json or setting.cmake
-# for build android (if needed:modify it) build-android.sh 
-# pch(ALL) and unity-build(Release) is availble 
-# use config.hh for fetching information or adding information about project (preprossors , compile-option,cmake-defines)
+### for project configuration just modify cmakepreset.json or setting.cmake
+### for build android (if needed:modify it) build-android.sh 
+### pch(ALL) and unity-build(Release) is availble 
+### use config.hh for fetching information or adding information about project (preprossors , compile-option,cmake-defines)
