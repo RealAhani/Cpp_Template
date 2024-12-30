@@ -15,4 +15,4 @@ cmake --preset "Build-App"
 cmake --build --preset "Build-App"
 rm -rf ./build/Darwin/Other/Android/Build-App
 
-adb install -r ./build/Darwin/Other/Android/App/bin/game.final.apk
+adb install -r ./build/Darwin/Other/Android/App/bin/app.final.apk

@@ -6,9 +6,9 @@ macro(BuildAPK target_link)
 
         foreach(P_ABI IN LISTS ANDROIDLISTS)
             add_custom_command(
-                OUTPUT "${CMAKE_SOURCE_DIR}/build/Darwin/Other/Android/App/lib/${P_ABI}"
-                COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/build/Darwin/Other/Android/${P_ABI}/out/x64_Release/lib/lib"${LIBNAME}".so ${CMAKE_SOURCE_DIR}/build/Darwin/Other/Android/App/lib/${P_ABI})
-            add_custom_target("copy_file${P_ABI}" ALL DEPENDS "${CMAKE_SOURCE_DIR}/build/Darwin/Other/Android/App/lib/${P_ABI}")
+                OUTPUT "${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/App/lib/${P_ABI}"
+                COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/${P_ABI}/out/x64_Release/lib/lib"${LIBNAME}".so ${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/App/lib/${P_ABI})
+            add_custom_target("copy_file${P_ABI}" ALL DEPENDS "${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/App/lib/${P_ABI}")
         endforeach(P_ABI IN LISTS ANDROIDLISTS)
 
         # working with android command line tools to generate android related stuff and finally create the .apk
@@ -46,40 +46,40 @@ macro(BuildAPK target_link)
             COMMAND
             $ENV{BUILD_TOOLS}/aapt ARGS package -f -M "AndroidManifest.xml" -S "res"
             -A "${ANDROID_OUTPUT}/assets" -I "${ANDROID_PLATFORM_PATH}/android.jar" -F
-            ${ANDROID_OUTPUT}/bin/game.unsigned.apk ${ANDROID_OUTPUT}/bin
+            ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk ${ANDROID_OUTPUT}/bin
 
             COMMAND
             $ENV{BUILD_TOOLS}/aapt ARGS add
-            ${ANDROID_OUTPUT}/bin/game.unsigned.apk
+            ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
             "lib/arm64-v8a/*"
 
             COMMAND
             $ENV{BUILD_TOOLS}/aapt ARGS add
-            ${ANDROID_OUTPUT}/bin/game.unsigned.apk
+            ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
             "lib/armeabi-v7a/*"
 
             COMMAND
             $ENV{BUILD_TOOLS}/aapt ARGS add
-            ${ANDROID_OUTPUT}/bin/game.unsigned.apk
+            ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
             "lib/x86_64/*"
 
             COMMAND
             $ENV{BUILD_TOOLS}/aapt ARGS add
-            ${ANDROID_OUTPUT}/bin/game.unsigned.apk
+            ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
             "lib/x86/*"
 
             # align apk
             COMMAND
             $ENV{BUILD_TOOLS}/zipalign ARGS -f 4
-            ${ANDROID_OUTPUT}/bin/game.unsigned.apk
-            ${ANDROID_OUTPUT}/bin/game.signed.apk
+            ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
+            ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.signed.apk
 
             # sign apk
             COMMAND
             $ENV{BUILD_TOOLS}/apksigner ARGS sign --ks
             ${ANDROID_OUTPUT}/key/key.keystore --out
-            ${ANDROID_OUTPUT}/bin/game.final.apk --ks-pass
-            pass:${APP_KEYSTORE_PASS} ${ANDROID_OUTPUT}/bin/game.signed.apk
+            ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.final.apk --ks-pass
+            pass:${APP_KEYSTORE_PASS} ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.signed.apk
             WORKING_DIRECTORY ${ANDROID_OUTPUT})
         add_custom_target("buildapp" ALL DEPENDS "${ANDROID_OUTPUT}/bin")
     endif(BUILD_APK)
