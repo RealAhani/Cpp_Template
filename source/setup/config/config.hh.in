@@ -16,6 +16,7 @@ static constexpr int myOS {@CURRENTOS@};               // OS should be defined l
 
 static constexpr std::string_view projectName {"@P_NAME@"};        // project name 
 static constexpr std::string_view projectVersion {"@P_VERSION@"};  // project version
+static constexpr std::string_view platform {"@PLATFORM@"};  // current platform that run this
 
 #cmakedefine HAS_LIB
 #ifdef HAS_LIB
