@@ -27,25 +27,25 @@
 // // raylib headers
 // #include <raylib.h>
 // #include <raymath.h>
-#include "config.hh"
+// #include "config.hh"
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 {
     // benchmark is activate from presets and with PROFILE or
     // PROFILE_SCOP macro`s .
-    PROFILE();
-    using namespace std::string_literals;
-    using namespace myproject::cmake;
-    // __________ Project Informations __________
-#if (MYOS == 1)                                   // OS is Windows
-    mloge::print("WIN"s);
-#elif (MYOS == 2)                                 // OS is GNU/Linux
-    mloge::print("LINUX"s);
-#elif (MYOS == 3)                                 // OS is OSX
-    mloge::print("MAC"s);
-#endif
+    // PROFILE();
+    //     using namespace std::string_literals;
+    //     using namespace myproject::cmake;
+    //     // __________ Project Informations __________
+    // #if (MYOS == 1)                                   // OS is Windows
+    //     mloge::print("WIN"s);
+    // #elif (MYOS == 2)                                 // OS is GNU/Linux
+    //     mloge::print("LINUX"s);
+    // #elif (MYOS == 3)                                 // OS is OSX
+    //     mloge::print("MAC"s);
+    // #endif
 
-    mloge::print(myproject::cmake::projectName);  // Project-name!
-    mloge::print(myproject::cmake::projectVersion);  // Project-version!
+    //     mloge::print(myproject::cmake::projectName);  // Project-name!
+    //     mloge::print(myproject::cmake::projectVersion);  // Project-version!
     // __________ Project Informations __________
 
     // Raylib window init
@@ -129,7 +129,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     // Main loop
     while (!WindowShouldClose() && !isQuit)
     {
-        PROFILE_SCOPE("LOOP");
+        // PROFILE_SCOPE("LOOP");
         // Input managment with raylib
         if (IsKeyPressed(KEY_ESCAPE)) [[unlikely]]
         {

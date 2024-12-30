@@ -15,7 +15,8 @@
             "installDir": "${sourceDir}/build/install/${hostSystemName}/Desktop",
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-                "CMAKE_COLOR_DIAGNOSTICS": "ON"
+                "CMAKE_COLOR_DIAGNOSTICS": "ON",
+                "PLATFORM": "Desktop"
             }
         },
         {
@@ -25,7 +26,8 @@
             "inherits": "conf-clang-common",
             "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-                "VCPKG_TARGET_TRIPLET": "x64-osx-dynamic"
+                "VCPKG_TARGET_TRIPLET": "x64-osx-dynamic",
+                "PLATFORM": "Desktop"
             },
             "vendor": {
                 "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
@@ -222,6 +224,264 @@
                 "HAS_UNITY_BUILD": "ON",
                 "HAS_PACKAGE": "ON"
             }
+        },
+        {
+            "name": "arm64-v8a",
+            "description": "Unix-like OS settings for ndk clang toolchains with vcpkg",
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/build/${hostSystemName}/Other/Android/${presetName}",
+            "installDir": "${sourceDir}/build/install/${hostSystemName}/Other/Android/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
+                "PRESET_NAME": "",
+                "CMAKE_BUILD_TYPE": "Release",
+                "P_INTERNAL_LIB_TYPE": "STATIC",
+                "HAS_EXE": "OFF",
+                "HAS_LIB": "OFF",
+                "HAS_CONSOLE": "OFF",
+                "P_CXX_VERSION": "20",
+                "P_C_VERSION": "11",
+                "P_CXX_EXTENTION": "ON",
+                "P_CXX_STANDARD": "ON",
+                "WERROR_FLAG": "OFF",
+                "HAS_STATIC_ANALYZER": "OFF",
+                "HAS_SAN": "OFF",
+                "HAS_BENCHMARK": "OFF",
+                "HAS_PCH": "ON",
+                "HAS_TEST": "OFF",
+                "HAS_UNITY_BUILD": "OFF",
+                "HAS_PACKAGE": "OFF",
+                "PLATFORM": "Android",
+                "ANDROID_ABI": "arm64-v8a",
+                "APP_LABEL": "SOSO",
+                "APP_PRODUCT_NAME": "app",
+                "APP_KEYSTORE_PASS": "password",
+                "ANDROID_PLATFORM": "34",
+                "APP_ORIENTATION": "landscape",
+                "BUILD_APK": "OFF"
+            }
+        },
+        {
+            "name": "armeabi-v7a",
+            "description": "Unix-like OS settings for ndk clang toolchains with vcpkg",
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/build/${hostSystemName}/Other/Android/${presetName}",
+            "installDir": "${sourceDir}/build/install/${hostSystemName}/Other/Android/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
+                "PRESET_NAME": "",
+                "CMAKE_BUILD_TYPE": "Release",
+                "P_INTERNAL_LIB_TYPE": "STATIC",
+                "HAS_EXE": "OFF",
+                "HAS_LIB": "OFF",
+                "HAS_CONSOLE": "OFF",
+                "P_CXX_VERSION": "20",
+                "P_C_VERSION": "11",
+                "P_CXX_EXTENTION": "ON",
+                "P_CXX_STANDARD": "ON",
+                "WERROR_FLAG": "OFF",
+                "HAS_STATIC_ANALYZER": "OFF",
+                "HAS_SAN": "OFF",
+                "HAS_BENCHMARK": "OFF",
+                "HAS_PCH": "ON",
+                "HAS_TEST": "OFF",
+                "HAS_UNITY_BUILD": "OFF",
+                "HAS_PACKAGE": "OFF",
+                "PLATFORM": "Android",
+                "ANDROID_ABI": "armeabi-v7a",
+                "APP_LABEL": "SOSO",
+                "APP_PRODUCT_NAME": "app",
+                "APP_KEYSTORE_PASS": "password",
+                "ANDROID_PLATFORM": "34",
+                "APP_ORIENTATION": "landscape",
+                "BUILD_APK": "OFF"
+            }
+        },
+        {
+            "name": "x86_64",
+            "description": "Unix-like OS settings for ndk clang toolchains with vcpkg",
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/build/${hostSystemName}/Other/Android/${presetName}",
+            "installDir": "${sourceDir}/build/install/${hostSystemName}/Other/Android/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
+                "PRESET_NAME": "",
+                "CMAKE_BUILD_TYPE": "Release",
+                "P_INTERNAL_LIB_TYPE": "STATIC",
+                "HAS_EXE": "OFF",
+                "HAS_LIB": "OFF",
+                "HAS_CONSOLE": "OFF",
+                "P_CXX_VERSION": "20",
+                "P_C_VERSION": "11",
+                "P_CXX_EXTENTION": "ON",
+                "P_CXX_STANDARD": "ON",
+                "WERROR_FLAG": "OFF",
+                "HAS_STATIC_ANALYZER": "OFF",
+                "HAS_SAN": "OFF",
+                "HAS_BENCHMARK": "OFF",
+                "HAS_PCH": "ON",
+                "HAS_TEST": "OFF",
+                "HAS_UNITY_BUILD": "OFF",
+                "HAS_PACKAGE": "OFF",
+                "PLATFORM": "Android",
+                "ANDROID_ABI": "x86_64",
+                "APP_LABEL": "SOSO",
+                "APP_PRODUCT_NAME": "app",
+                "APP_KEYSTORE_PASS": "password",
+                "ANDROID_PLATFORM": "34",
+                "APP_ORIENTATION": "landscape",
+                "BUILD_APK": "OFF"
+            }
+        },
+        {
+            "name": "x86",
+            "description": "Unix-like OS settings for ndk clang toolchains with vcpkg",
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/build/${hostSystemName}/Other/Android/${presetName}",
+            "installDir": "${sourceDir}/build/install/${hostSystemName}/Other/Android/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
+                "PRESET_NAME": "",
+                "CMAKE_BUILD_TYPE": "Release",
+                "P_INTERNAL_LIB_TYPE": "STATIC",
+                "HAS_EXE": "OFF",
+                "HAS_LIB": "OFF",
+                "HAS_CONSOLE": "OFF",
+                "P_CXX_VERSION": "20",
+                "P_C_VERSION": "11",
+                "P_CXX_EXTENTION": "ON",
+                "P_CXX_STANDARD": "ON",
+                "WERROR_FLAG": "OFF",
+                "HAS_STATIC_ANALYZER": "OFF",
+                "HAS_SAN": "OFF",
+                "HAS_BENCHMARK": "OFF",
+                "HAS_PCH": "ON",
+                "HAS_TEST": "OFF",
+                "HAS_UNITY_BUILD": "OFF",
+                "HAS_PACKAGE": "OFF",
+                "PLATFORM": "Android",
+                "ANDROID_ABI": "x86",
+                "APP_LABEL": "SOSO",
+                "APP_PRODUCT_NAME": "app",
+                "APP_KEYSTORE_PASS": "password",
+                "ANDROID_PLATFORM": "34",
+                "APP_ORIENTATION": "landscape",
+                "BUILD_APK": "OFF"
+            }
+        },
+        {
+            "name": "Build-App",
+            "description": "Unix-like OS settings for ndk clang toolchains with vcpkg",
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/build/${hostSystemName}/Other/Android/${presetName}",
+            "installDir": "${sourceDir}/build/install/${hostSystemName}/Other/Android/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
+                "PRESET_NAME": "",
+                "CMAKE_BUILD_TYPE": "Release",
+                "P_INTERNAL_LIB_TYPE": "STATIC",
+                "HAS_EXE": "OFF",
+                "HAS_LIB": "OFF",
+                "HAS_CONSOLE": "OFF",
+                "P_CXX_VERSION": "20",
+                "P_C_VERSION": "11",
+                "P_CXX_EXTENTION": "ON",
+                "P_CXX_STANDARD": "ON",
+                "WERROR_FLAG": "OFF",
+                "HAS_STATIC_ANALYZER": "OFF",
+                "HAS_SAN": "OFF",
+                "HAS_BENCHMARK": "OFF",
+                "HAS_PCH": "ON",
+                "HAS_TEST": "OFF",
+                "HAS_UNITY_BUILD": "OFF",
+                "HAS_PACKAGE": "OFF",
+                "PLATFORM": "Android",
+                "ANDROID_ABI": "x86",
+                "APP_LABEL": "SOSO",
+                "APP_PRODUCT_NAME": "app",
+                "APP_KEYSTORE_PASS": "password",
+                "ANDROID_PLATFORM": "34",
+                "APP_ORIENTATION": "landscape",
+                "BUILD_APK": "ON"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "win-clang-safe",
+            "displayName": "Windows Clang Safe",
+            "configurePreset": "win-clang-safe",
+            "configuration": "Debug",
+            "jobs": 12
+        },
+        {
+            "name": "win-clang-test",
+            "displayName": "Windows Clang Test",
+            "configurePreset": "win-clang-test",
+            "configuration": "Debug"
+        },
+        {
+            "name": "win-clang-release",
+            "displayName": "Windows Clang Release",
+            "configurePreset": "win-clang-release",
+            "configuration": "Release",
+            "jobs": 12
+        },
+        {
+            "name": "unix-clang-safe",
+            "displayName": "Unix Clang Safe",
+            "configurePreset": "unix-clang-safe",
+            "configuration": "Debug",
+            "jobs": 12
+        },
+        {
+            "name": "unix-clang-test",
+            "displayName": "Unix Clang Test",
+            "configurePreset": "unix-clang-test",
+            "configuration": "Debug",
+            "jobs": 12
+        },
+        {
+            "name": "unix-clang-release",
+            "displayName": "Unix Clang Release",
+            "configurePreset": "unix-clang-release",
+            "configuration": "Release",
+            "jobs": 12
+        },
+        {
+            "name": "arm64-v8a",
+            "displayName": "arm64-v8a",
+            "configurePreset": "arm64-v8a",
+            "configuration": "Release",
+            "jobs": 12
+        },
+        {
+            "name": "armeabi-v7a",
+            "displayName": "armeabi-v7a",
+            "configurePreset": "armeabi-v7a",
+            "configuration": "Release",
+            "jobs": 12
+        },
+        {
+            "name": "x86_64",
+            "displayName": "x86_64",
+            "configurePreset": "x86_64",
+            "configuration": "Release",
+            "jobs": 12
+        },
+        {
+            "name": "x86",
+            "displayName": "x86",
+            "configurePreset": "x86",
+            "configuration": "Release",
+            "jobs": 12
+        },
+        {
+            "name": "Build-App",
+            "displayName": "Build-App",
+            "configurePreset": "Build-App",
+            "configuration": "Release",
+            "jobs": 12
         }
     ]
 }

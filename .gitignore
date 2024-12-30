@@ -8,6 +8,7 @@ thirdParty/*
 
 *.log
 *.pdb
+*.keystore
 .DS_Store
 # Prerequisites
 *.d
