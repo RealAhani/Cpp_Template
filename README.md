@@ -5,9 +5,11 @@
  - clang-format , clang-tidy , cmake-format 
  - vcpkg (catch2) 
  - cmake 3.26 or greater
- - cppcheck
+ - ninja
+ - cpp-check
  - clangd 
-### Asan and UBsan are not working on windows
+### Sanitizers are not working properly on windows
+### Dont use sanitizers with test has been enabled
 
 ## Prerequisite for Android 
  - NDK 27.2.12479018
@@ -23,10 +25,10 @@
   - ANDROID_SDK_HOME
   - BUILD_TOOLS
   - JAVA_HOME
-  - platform-tools should be on path
+  - platform-tools dir should be availble on path
 
 --------------------------------------------------------------------------------
-*put all the assets like .wav .png ,etc ... on resources/assets* 
+*put all the assets like .wav , .png ,etc ... on resources/assets* 
 
 ### for project configuration just modify cmakepreset.json or setting.cmake
 ### for build android (if needed:modify it) build-android.sh 

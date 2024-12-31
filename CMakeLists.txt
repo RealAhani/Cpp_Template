@@ -98,7 +98,9 @@ if(NOT BUILD_APK)
     add_subdirectory("./source/library")
   endif()
 
-  add_subdirectory("./source/project")
+  if(NOT HAS_TEST)
+    add_subdirectory("./source/project")
+  endif(NOT HAS_TEST)
 
   if(HAS_BENCHMARK)
     add_subdirectory("./source/benchmark")
