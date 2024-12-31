@@ -42,36 +42,56 @@ macro(AndroidSetup target_link)
         "${ANDROID_OUTPUT}/src/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/NativeLoader.java"
     )
 
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        add_custom_command(
+            TARGET ${target_link}
+            PRE_BUILD
+
+            # prepare directory
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/key
+            COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/bin
+            COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/lib
+            COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/res
+            COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/assets
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/bin
+            COMMAND ${CMAKE_COMMAND} -E make_directory
+            ${ANDROID_OUTPUT}/lib/arm64-v8a
+            COMMAND ${CMAKE_COMMAND} -E make_directory
+            ${ANDROID_OUTPUT}/lib/armeabi-v7a
+            COMMAND ${CMAKE_COMMAND} -E make_directory
+            ${ANDROID_OUTPUT}/lib/x86_64
+            COMMAND ${CMAKE_COMMAND} -E make_directory
+            ${ANDROID_OUTPUT}/lib/x86
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/res
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/obj)
+    else()
+        add_custom_command(
+            TARGET ${target_link}
+            PRE_BUILD
+
+            # prepare directory
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/key
+            COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/bin
+            COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/lib
+            COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/res
+            COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/assets
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/bin
+            COMMAND ${CMAKE_COMMAND} -E make_directory
+            ${ANDROID_OUTPUT}/lib/arm64-v8a
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/res
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/obj)
+    endif(CMAKE_BUILD_TYPE STREQUAL "Release")
+
     # ordering the apk directory
-    add_custom_command(
-        TARGET ${target_link}
-        PRE_BUILD
-
-        # prepare directory
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/key
-        COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/bin
-        COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/lib
-        COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/res
-        COMMAND ${CMAKE_COMMAND} -E remove_directory ${ANDROID_OUTPUT}/assets
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/bin
-        COMMAND ${CMAKE_COMMAND} -E make_directory
-        ${ANDROID_OUTPUT}/lib/arm64-v8a
-        COMMAND ${CMAKE_COMMAND} -E make_directory
-        ${ANDROID_OUTPUT}/lib/armeabi-v7a
-        COMMAND ${CMAKE_COMMAND} -E make_directory
-        ${ANDROID_OUTPUT}/lib/x86_64
-        COMMAND ${CMAKE_COMMAND} -E make_directory
-        ${ANDROID_OUTPUT}/lib/x86
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/res
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${ANDROID_OUTPUT}/obj)
-
     if(NOT EXISTS ${ANDROID_OUTPUT}/key/key.keystore)
-        execute_process(
-            COMMAND
-            keytool -genkeypair -validity 1000 -dname
+        add_custom_command(
+            OUTPUT "${ANDROID_OUTPUT}/key/key.keystore"
+            COMMAND keytool ARGS -genkeypair -validity 1000 -dname
             "CN=${APP_COMPANY_NAME},O=Android,C=ES" -keystore
             ${ANDROID_OUTPUT}/key/key.keystore -storepass ${APP_KEYSTORE_PASS}
             -keypass ${APP_KEYSTORE_PASS} -alias ${target_link}Key -keyalg RSA)
+        add_custom_target("generateKey" ALL DEPENDS "${ANDROID_OUTPUT}/key/key.keystore")
     endif()
 endmacro(AndroidSetup target_link)
