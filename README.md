@@ -30,7 +30,7 @@
 --------------------------------------------------------------------------------
 *put all the assets like .wav , .png ,etc ... on resources/assets* 
 
-### for project configuration just modify cmakepreset.json or setting.cmake
+### for project configuration just modify cmakepreset.json or Setting.cmake
 ### for build android (if needed:modify it) build-android.sh 
 ### pch(ALL) and unity-build(Release) is availble 
 ### use config.hh for fetching information or adding information about project (preprossors , compile-option,cmake-defines)

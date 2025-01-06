@@ -1,7 +1,7 @@
 # ## ROOT
 # TODO add RelWithDebugInfo
 message("--------------------------------------------- General info:")
-include(${CMAKE_SOURCE_DIR}/cmake/setting.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Setting.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/BuildAPK.cmake)
 
 # compiler should be clang++

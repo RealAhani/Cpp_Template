@@ -1,7 +1,7 @@
 # ## Project
-include(${CMAKE_SOURCE_DIR}/cmake/setting.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/static_analyzer.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/sanitizer.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Setting.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/StaticAnalyzer.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/Sanitizer.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/LibsConfig.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/Android.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/BuildAPK.cmake)
