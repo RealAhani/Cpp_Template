@@ -15,14 +15,18 @@ set(P_LIB_NAME "main2" CACHE STRING "internal lib name" FORCE)
 set(P_TEST_NAME "${P_NAME}_test" CACHE STRING "test name" FORCE)
 
 # ################### Versioning
+set(PRVERSION_MAJOR "0" CACHE STRING "" FORCE)
+set(PRVERSION_MINOR "0" CACHE STRING "" FORCE)
+set(PRVERSION_PATCH "1" CACHE STRING "" FORCE)
+
 # projcet version
-set(P_VERSION "0.0.1" CACHE STRING "project version" FORCE)
+set(P_VERSION "${PRVERSION_MAJOR}.${PRVERSION_MINOR}.${PRVERSION_PATCH}" CACHE STRING "project version" FORCE)
 
 # c++ version
-set(P_CXX_VERSION 20 CACHE STRING "c++ version" FORCE)
+set(P_CXX_VERSION 20 CACHE STRING "c++ version")
 
 # c version
-set(P_C_VERSION 11 CACHE STRING "c version" FORCE)
+set(P_C_VERSION 11 CACHE STRING "c version")
 
 # ################### Compiler detail
 # compiler name
@@ -56,7 +60,7 @@ option(WERROR_FLAG OFF "Warning as error on/off")
 # -Wpedantic # warn if non-standard C++ is used
 # ${OS_ANDROID}:-Wno-main
 set(DBG_FLAGS "-Wall;-Wextra;-Wpedantic;-Wshadow;-Wconversion;-Wnon-virtual-dtor;-Wcast-align;-Wunused;-Woverloaded-virtual;-Wsign-conversion;-Wdouble-promotion;-Wformat=2;-Wimplicit-fallthrough;-Wsuggest-override;-Wnull-dereference;-Wold-style-cast;-Wpedantic"
-  CACHE STRING "debug flags" FORCE)
+  CACHE STRING "debug flags")
 
 # if werror is on add it to debug flags
 if(WERROR_FLAG)
@@ -66,13 +70,13 @@ endif(WERROR_FLAG)
 # release flags
 # -march=native -flto -fPIC
 set(REL_FLAGS "-O3;-DNDEBUG;-ftree-vectorize"
-  CACHE STRING "release flags" FORCE)
+  CACHE STRING "release flags")
 
 # sanitizer flags
 # "-address,-undefined,-memory,-pointer-compare,-pointer-subtract;"
 # ## should be something like this ==> set(SAN_FLAGS "address,undefined,memory,pointer-compare,pointer-subtract" CACHE STRING "sanitizer flags" FORCE)
 set(SAN_FLAGS "address,undefined"
-  CACHE STRING "sanitizer flags" FORCE)
+  CACHE STRING "sanitizer flags")
 
 # sanitizer option
 option(HAS_SAN ON "sanitizer can enabled/disabled")
@@ -87,7 +91,7 @@ option(HAS_CONSOLE ON "exe run with window and console at the same time")
 
 # the output of project is a library if has_exe is off
 if(NOT HAS_EXE)
-  set(P_LIB_TYPE "SHARED" CACHE STRING "project library type (STATIC/SHARED)" FORCE)
+  set(P_LIB_TYPE "SHARED" CACHE STRING "project library type (STATIC/SHARED)")
 endif(NOT HAS_EXE)
 
 # ################### Testing and Benchmark
@@ -104,7 +108,7 @@ option(HAS_UNITY_BUILD OFF "unity build should just enabled in release mode")
 option(HAS_LIB ON "internal library can enabled/disabled")
 
 # internal lib type
-set(P_INTERNAL_LIB_TYPE "STATIC" CACHE STRING "internal library type (STATIC/SHARED)" FORCE)
+set(P_INTERNAL_LIB_TYPE "STATIC" CACHE STRING "internal library type (STATIC/SHARED)")
 
 # ################### ThirdParty Dependencies or Fetch Libraries from github (External Libraries)
 # URLS          = [raylib git url;box2d git url]
