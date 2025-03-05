@@ -34,3 +34,6 @@
 ### for build android (if needed:modify it) build-android.sh 
 ### pch(ALL) and unity-build(Release) is availble 
 ### use config.hh for fetching information or adding information about project (preprossors , compile-option,cmake-defines)
+--------------------------------------------------------------------------------
+### asset and resources like text files sound texture model etc ... should be placed in recources/assets/ 
+### if you create new folder for each asset type you should add it to android build in BuildAPK.cmake (line 25 and 96)
