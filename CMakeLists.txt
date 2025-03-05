@@ -183,3 +183,12 @@ add_custom_command(
 )
 
 add_custom_target(copy_compile_commands ALL DEPENDS "${TARGET_FILE}")
+
+# copy assets to bin folder for not android devices (Desktopes)
+if(NOT ${PLATFORM} STREQUAL "Android")
+  set(ASSETS "${CMAKE_SOURCE_DIR}/resources/assets")
+  add_custom_target(copy_assets ALL COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${ASSETS}
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+    COMMENT "Copying assets to bin directory")
+endif(NOT ${PLATFORM} STREQUAL "Android")

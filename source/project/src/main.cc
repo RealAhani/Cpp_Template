@@ -125,6 +125,10 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     float const  timeStep     = {1.f / 15.f};  // 60HZ
     int8_t const subStepCount = {3};
 
+    [[maybe_unused]]
+    bool const fex = FileExists("resource/TEST.txt");
+    // std::cout << fex << "dddddddddddddddddddddddddddddddd]\n";
+    std::string const str {LoadFileText("resource/TEST.txt")};
 
     // Main loop
     while (!WindowShouldClose() && !isQuit)
@@ -178,6 +182,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
                          b2Rot_GetAngle(b2Body_GetRotation(groundBodyId2)) *
                              RAD2DEG,
                          GREEN);
+
+
+        DrawText(str.c_str(), width / 2, height / 2, 44, RAYWHITE);
 
         EndDrawing();
     }

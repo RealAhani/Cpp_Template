@@ -30,6 +30,7 @@
 #include <algorithm>
 #include <map>
 #include <thread>
+#include <fstream>
 
 // Project generated header for config macro nad variables
 #include "config.hh"

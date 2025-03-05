@@ -23,7 +23,7 @@ macro(BuildAPK target_link)
                 COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/resources/android/res"
                 "res"
                 COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/resources/assets"
-                "assets/resource"
+                "assets"
 
                 # copy config_bak
                 COMMAND ${CMAKE_COMMAND} -E copy_directory "config_bak" "."
@@ -94,7 +94,7 @@ macro(BuildAPK target_link)
                 COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/resources/android/res"
                 "res"
                 COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/resources/assets"
-                "assets/resource"
+                "assets"
 
                 # copy config_bak
                 COMMAND ${CMAKE_COMMAND} -E copy_directory "config_bak" "."
