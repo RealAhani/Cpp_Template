@@ -1,7 +1,7 @@
 ---
 # Project
 Standard: c++17
-ColumnLimit: 70 
+ColumnLimit: 85
 
 # Indentation
 AccessModifierOffset: -4
