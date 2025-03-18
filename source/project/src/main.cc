@@ -28,24 +28,27 @@
 // #include <raylib.h>
 // #include <raymath.h>
 // #include "config.hh"
+#include <print>
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 {
+    std::println("hello c++23 ");
     // benchmark is activate from presets and with PROFILE or
     // PROFILE_SCOP macro`s .
     // PROFILE();
-    //     using namespace std::string_literals;
-    //     using namespace myproject::cmake;
-    //     // __________ Project Informations __________
-    // #if (MYOS == 1)                                   // OS is Windows
-    //     mloge::print("WIN"s);
-    // #elif (MYOS == 2)                                 // OS is GNU/Linux
-    //     mloge::print("LINUX"s);
-    // #elif (MYOS == 3)                                 // OS is OSX
-    //     mloge::print("MAC"s);
-    // #endif
+    using namespace std::string_literals;
+    using namespace myproject::cmake;
+    // __________ Project Informations __________
+#if (MYOS == 1)                                      // OS is Windows
+    mloge::print("WIN"s);
+#elif (MYOS == 2)                                    // OS is GNU/Linux
+    mloge::print("LINUX"s);
+#elif (MYOS == 3)                                    // OS is OSX
+    mloge::print("MAC"s);
+#endif
 
-    //     mloge::print(myproject::cmake::projectName);  // Project-name!
-    //     mloge::print(myproject::cmake::projectVersion);  // Project-version!
+    mloge::print(myproject::cmake::projectName);     // Project-name!
+
+    mloge::print(myproject::cmake::projectVersion);  // Project-version!
     // __________ Project Informations __________
 
     // Raylib window init
@@ -82,10 +85,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     groundDef.type      = b2_staticBody;
     groundDef.rotation  = b2MakeRot(rectDec * DEG2RAD);
 
-    b2BodyId const groundBodyId = {b2CreateBody(worldID, &groundDef)};
-    b2Polygon const groundShape = {
-        b2MakeBox(rectWidth / 2.f, rectHeight / 2.f)};
-    b2ShapeDef groundShapeDef = {b2DefaultShapeDef()};
+    b2BodyId const  groundBodyId   = {b2CreateBody(worldID, &groundDef)};
+    b2Polygon const groundShape    = {b2MakeBox(rectWidth / 2.f, rectHeight / 2.f)};
+    b2ShapeDef      groundShapeDef = {b2DefaultShapeDef()};
     // Mass is not need for static object
     groundShapeDef.friction    = 0.3f;
     groundShapeDef.restitution = 0.7f;
@@ -97,10 +99,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     groundDef2.type      = b2_staticBody;
     groundDef2.rotation  = b2MakeRot(75.f * DEG2RAD);
 
-    b2BodyId const groundBodyId2 = {b2CreateBody(worldID, &groundDef2)};
-    b2Polygon const groundShape2 = {
-        b2MakeBox(rectWidth / 2.f, rectHeight / 2.f)};
-    b2ShapeDef groundShapeDef2 = {b2DefaultShapeDef()};
+    b2BodyId const  groundBodyId2   = {b2CreateBody(worldID, &groundDef2)};
+    b2Polygon const groundShape2    = {b2MakeBox(rectWidth / 2.f, rectHeight / 2.f)};
+    b2ShapeDef      groundShapeDef2 = {b2DefaultShapeDef()};
     // Mass is not need for static object
     groundShapeDef2.friction    = 0.3f;
     groundShapeDef2.restitution = 0.7f;
@@ -112,12 +113,11 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     boxDef.type      = b2_dynamicBody;
     boxDef.rotation  = b2MakeRot(30.f * DEG2RAD);
 
-    b2BodyId const  boxBodyId = {b2CreateBody(worldID, &boxDef)};
-    b2Polygon const boxShape  = {
-        b2MakeBox(squerWidth / 2.f, squerHeight / 2.f)};
-    b2ShapeDef boxShapeDef = {b2DefaultShapeDef()};
-    boxShapeDef.density    = 1.f;
-    boxShapeDef.friction   = 0.7f;
+    b2BodyId const  boxBodyId   = {b2CreateBody(worldID, &boxDef)};
+    b2Polygon const boxShape    = {b2MakeBox(squerWidth / 2.f, squerHeight / 2.f)};
+    b2ShapeDef      boxShapeDef = {b2DefaultShapeDef()};
+    boxShapeDef.density         = 1.f;
+    boxShapeDef.friction        = 0.7f;
     b2CreatePolygonShape(boxBodyId, &boxShapeDef, &boxShape);
 
     // Simulating setting (box2d-related)
@@ -155,10 +155,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
                                     .y      = -boxPos.y,
                                     .width  = squerWidth,
                                     .height = squerHeight},
-                         Vector2 {.x = (squerWidth / 2.f),
-                                  .y = (squerHeight / 2.f)},
-                         b2Rot_GetAngle(b2Body_GetRotation(boxBodyId)) *
-                             RAD2DEG,
+                         Vector2 {.x = (squerWidth / 2.f), .y = (squerHeight / 2.f)},
+                         b2Rot_GetAngle(b2Body_GetRotation(boxBodyId)) * RAD2DEG,
                          RED);
 
         // Draw the ground as a box
@@ -166,10 +164,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
                                     .y      = -groundPos.y,
                                     .width  = rectWidth,
                                     .height = rectHeight},
-                         Vector2 {.x = (rectWidth / 2),
-                                  .y = (rectHeight / 2)},
-                         b2Rot_GetAngle(b2Body_GetRotation(groundBodyId)) *
-                             RAD2DEG,
+                         Vector2 {.x = (rectWidth / 2), .y = (rectHeight / 2)},
+                         b2Rot_GetAngle(b2Body_GetRotation(groundBodyId)) * RAD2DEG,
                          GREEN);
 
         // Draw the second ground
@@ -177,10 +173,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
                                     .y      = -groundPos2.y,
                                     .width  = rectWidth,
                                     .height = rectHeight},
-                         Vector2 {.x = (rectWidth / 2),
-                                  .y = (rectHeight / 2)},
-                         b2Rot_GetAngle(b2Body_GetRotation(groundBodyId2)) *
-                             RAD2DEG,
+                         Vector2 {.x = (rectWidth / 2), .y = (rectHeight / 2)},
+                         b2Rot_GetAngle(b2Body_GetRotation(groundBodyId2)) * RAD2DEG,
                          GREEN);
 
 
