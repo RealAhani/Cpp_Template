@@ -2,6 +2,14 @@ include_guard()
 include(FetchContent)
 
 function(fetch_repositories target)
+# define external lib as static or dynamic
+if(${P_EXTERNAL_LIBS_TYPE} STREQUAL "STATIC")
+# its Static
+set(libbuildtemp OFF)
+# its Shared
+ else()
+ set(libbuildtemp ON)
+endif(${P_EXTERNAL_LIBS_TYPE} STREQUAL "STATIC")
   set_property(GLOBAL PROPERTY USE_FOLDERS ON)
   set(INDEX 0)
   if(URLS)
@@ -24,6 +32,8 @@ function(fetch_repositories target)
           GIT_PROGRESS TRUE
           SOURCE_DIR "${SOURCE_DESTINATION}"
         )
+        # this external lib build as a STATIC-LIB (OFF) / SHARED-LIB (ON)
+        set(BUILD_SHARED_LIBS ${libbuildtemp})
         FetchContent_MakeAvailable(${repo_name})
         math(EXPR INDEX "${INDEX} + 1")
         include_directories(${${repo_name}_SOURCE_DIR}/include)
@@ -45,6 +55,8 @@ function(fetch_repositories target)
           GIT_PROGRESS TRUE
           SOURCE_DIR "${SOURCE_DESTINATION}"
         )
+        # this external lib build as a STATIC-LIB (OFF) / SHARED-LIB (ON)
+        set(BUILD_SHARED_LIBS ${libbuildtemp})
         FetchContent_MakeAvailable(${repo_name}) 
         math(EXPR INDEX "${INDEX} + 1")
         include_directories(${${repo_name}_SOURCE_DIR}/include)
@@ -56,6 +68,9 @@ function(fetch_repositories target)
       endforeach()
     endif()
   endif()
+        message(
+          "ALL External fetched libs build as a BUILD_SHARED_LIBS: ${libbuildtemp}"
+        )
 endfunction()
 
 # target_link_libraries(MyApp PRIVATE sfml-graphics sfml-window sfml-system)

@@ -109,13 +109,15 @@ option(HAS_LIB ON "internal library can enabled/disabled")
 
 # internal lib type
 set(P_INTERNAL_LIB_TYPE "STATIC" CACHE STRING "internal library type (STATIC/SHARED)")
+# External fetched libs type
+set(P_EXTERNAL_LIBS_TYPE "STATIC" CACHE STRING "Fetched librareis type (STATIC/SHARED)")
 
 # ################### ThirdParty Dependencies or Fetch Libraries from github (External Libraries)
 # URLS          = [raylib git url;box2d git url]
-# TAGS          = [raylib git tag;box2d git tag]
+# TAGS          = [raylib git tag;box2d git tag] e.g (version or master/main or comit hash)
 # LINKING_VARS  = [raylib;box2d]
 set(URLS "https://github.com/raysan5/raylib.git;https://github.com/erincatto/box2d.git" CACHE STRING "repositories usrls")
-set(TAGS "master;main" CACHE STRING "Tag that you want to fetch or branch name")
+set(TAGS "5.5;v3.0.0" CACHE STRING "Tag that you want to fetch or branch name")
 set(LINK_VARS "raylib;box2d" CACHE STRING "the library linking variables")
 
 if(${PLATFORM} STREQUAL "Android")

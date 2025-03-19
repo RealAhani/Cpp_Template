@@ -33,7 +33,7 @@ if(HAS_BENCHMARK)
 
 # Benchmark disable
 else()
-  target_link_libraries(${P_LIB_NAME} PUBLIC PRIVATE ${LINK_VARS})
+  target_link_libraries(${P_LIB_NAME} PRIVATE ${LINK_VARS})
 endif(HAS_BENCHMARK)
 
 if(HAS_UNITY_BUILD)

@@ -20,7 +20,8 @@
                 "P_CXX_VERSION": "23",
                 "P_C_VERSION": "11",
                 "P_CXX_EXTENTION": "ON",
-                "P_CXX_STANDARD": "ON"
+                "P_CXX_STANDARD": "ON",
+                "P_EXTERNAL_LIBS_TYPE": "STATIC"
             }
         },
         {
@@ -216,6 +217,7 @@
                 "PRESET_NAME": "",
                 "CMAKE_BUILD_TYPE": "Release",
                 "P_INTERNAL_LIB_TYPE": "STATIC",
+                "P_EXTERNAL_LIBS_TYPE": "STATIC",
                 "HAS_EXE": "OFF",
                 "HAS_LIB": "OFF",
                 "HAS_CONSOLE": "OFF",
@@ -252,6 +254,7 @@
                 "PRESET_NAME": "",
                 "CMAKE_BUILD_TYPE": "Release",
                 "P_INTERNAL_LIB_TYPE": "STATIC",
+                "P_EXTERNAL_LIBS_TYPE": "STATIC",
                 "HAS_EXE": "OFF",
                 "HAS_LIB": "OFF",
                 "HAS_CONSOLE": "OFF",
@@ -288,6 +291,7 @@
                 "PRESET_NAME": "",
                 "CMAKE_BUILD_TYPE": "Release",
                 "P_INTERNAL_LIB_TYPE": "STATIC",
+                "P_EXTERNAL_LIBS_TYPE": "STATIC",
                 "HAS_EXE": "OFF",
                 "HAS_LIB": "OFF",
                 "HAS_CONSOLE": "OFF",
@@ -324,6 +328,7 @@
                 "PRESET_NAME": "",
                 "CMAKE_BUILD_TYPE": "Release",
                 "P_INTERNAL_LIB_TYPE": "STATIC",
+                "P_EXTERNAL_LIBS_TYPE": "STATIC",
                 "HAS_EXE": "OFF",
                 "HAS_LIB": "OFF",
                 "HAS_CONSOLE": "OFF",
@@ -360,6 +365,7 @@
                 "PRESET_NAME": "",
                 "CMAKE_BUILD_TYPE": "Release",
                 "P_INTERNAL_LIB_TYPE": "STATIC",
+                "P_EXTERNAL_LIBS_TYPE": "STATIC",
                 "HAS_EXE": "OFF",
                 "HAS_LIB": "OFF",
                 "HAS_CONSOLE": "OFF",
