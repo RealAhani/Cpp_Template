@@ -37,3 +37,6 @@
 --------------------------------------------------------------------------------
 ### asset and resources like text files sound texture model etc ... should be placed in recources/assets/ 
 ### if you create new folder for each asset type you should add it to android build in BuildAPK.cmake (line 25 and 96)
+## for strip out console on windows you can exec this command on msvc powershell tool
+`editbin /subsystem:windows my_game.exe
+`
