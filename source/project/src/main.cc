@@ -7,6 +7,7 @@
  * this file.
  */
 
+#include "raylib.h"
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 {
     std::println("hello c++23 ");
@@ -15,7 +16,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     // PROFILE();
     using namespace std::string_literals;
     using namespace myproject::cmake;
-    // __________ Project Informations __________
+// __________ Project Informations __________
 #if (MYOS == 1)                                      // OS is Windows
     mloge::print("WIN"s);
 #elif (MYOS == 2)                                    // OS is GNU/Linux
@@ -30,8 +31,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     // __________ Project Informations __________
 
     // Raylib window init
+    SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_WINDOW_HIGHDPI | FLAG_VSYNC_HINT |
+                   FLAG_FULLSCREEN_MODE);
     InitWindow(0, 0, "Test");
-    ToggleFullscreen();
 
     // Window properties
     [[maybe_unused]]

@@ -32,7 +32,7 @@ if(CCACHE_FOUND)
   set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
 endif()
 
-cmake_minimum_required(VERSION 3.25...3.31)
+cmake_minimum_required(VERSION 3.25..3.31)
 
 project(${P_NAME} VERSION ${P_VERSION})
 set(CMAKE_CXX_STANDARD ${P_CXX_VERSION})
