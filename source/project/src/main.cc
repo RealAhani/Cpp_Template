@@ -7,28 +7,6 @@
  * this file.
  */
 
-// #include <string>
-// #include <fstream>
-// #include <chrono>
-// #include <mutex>
-// #include <algorithm>
-// #include <map>
-
-
-// // box2d headers
-// #include <box2d/box2d.h>
-// #include <box2d/types.h>
-// #include <box2d/base.h>
-// #include <box2d/math_functions.h>
-// #include <box2d/id.h>
-// #include <box2d/collision.h>
-
-
-// // raylib headers
-// #include <raylib.h>
-// #include <raymath.h>
-// #include "config.hh"
-#include <print>
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 {
     std::println("hello c++23 ");
@@ -190,72 +168,22 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 }
 
 // // If this is a window app and WinMain is needed
-// // #include <windows.h>
-// // int WINAPI WinMain(HINSTANCE hInstance,
-// //                    HINSTANCE hPrevInstance,
-// //                    LPSTR     lpCmdLine,
-// //                    int       nCmdShow)
-// // {
-// //     MessageBox(nullptr, "Hello, World!", "My First WinMain", MB_OK);
-
-// //     return 0;
-// // }
-
-
-// #include "raylib.h"
-
-// //------------------------------------------------------------------------------------
-// // Program main entry point
-// //------------------------------------------------------------------------------------
-// int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
+// #if defined(_WIN32)
+// #define NOGDI   // All GDI defines and routines
+// #define NOUSER  // All USER defines and routines
+// #endif
+// // or any library that uses Windows.h
+// #include <windows.h>
+// #if defined(_WIN32)  // raylib uses these names as function parameters
+// #undef near
+// #undef far
+// #endif
+// auto WINAPI WinMain([[maybe_unused]] HINSTANCE hInstance,
+//                     [[maybe_unused]] HINSTANCE hPrevInstance,
+//                     [[maybe_unused]] LPSTR     lpCmdLine,
+//                     [[maybe_unused]] int       nCmdShow) -> int
 // {
-//     // Initialization
-//     //--------------------------------------------------------------------------------------
-//     int const screenWidth  = 800;
-//     int const screenHeight = 450;
-
-//     InitWindow(screenWidth,
-//                screenHeight,
-//                "raylib [core] example - keyboard input");
-
-//     Vector2 ballPosition = {screenWidth / 2.f, screenHeight / 2.f};
-
-//     SetTargetFPS(60);  // Set our game to run at 60 frames-per-second
-//     //--------------------------------------------------------------------------------------
-
-//     // Main game loop
-//     while (!WindowShouldClose())  // Detect window close button or ESC key
-//     {
-//         // Update
-//         //----------------------------------------------------------------------------------
-//         if (IsKeyDown(KEY_RIGHT))
-//             ballPosition.x += 2.0f;
-//         if (IsKeyDown(KEY_LEFT))
-//             ballPosition.x -= 2.0f;
-//         if (IsKeyDown(KEY_UP))
-//             ballPosition.y -= 2.0f;
-//         if (IsKeyDown(KEY_DOWN))
-//             ballPosition.y += 2.0f;
-//         //----------------------------------------------------------------------------------
-
-//         // Draw
-//         //----------------------------------------------------------------------------------
-//         BeginDrawing();
-
-//         ClearBackground(RAYWHITE);
-
-//         DrawText("move the ball with arrow keys", 10, 10, 20, DARKGRAY);
-
-//         DrawCircleV(ballPosition, 50, MAROON);
-
-//         EndDrawing();
-//         //----------------------------------------------------------------------------------
-//     }
-
-//     // De-Initialization
-//     //--------------------------------------------------------------------------------------
-//     CloseWindow();  // Close window and OpenGL context
-//     //--------------------------------------------------------------------------------------
+//     // MessageBox(nullptr, "Hello, World!", "My First WinMain", MB_OK);
 
 //     return 0;
 // }

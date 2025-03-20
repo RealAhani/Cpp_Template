@@ -124,7 +124,7 @@
                 "P_INTERNAL_LIB_TYPE": "STATIC",
                 "HAS_EXE": "ON",
                 "HAS_LIB": "ON",
-                "HAS_CONSOLE": "ON",
+                "HAS_CONSOLE": "OFF",
                 "WERROR_FLAG": "OFF",
                 "HAS_STATIC_ANALYZER": "OFF",
                 "HAS_SAN": "OFF",
