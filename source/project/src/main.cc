@@ -68,8 +68,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     b2Polygon const groundShape    = {b2MakeBox(rectWidth / 2.f, rectHeight / 2.f)};
     b2ShapeDef      groundShapeDef = {b2DefaultShapeDef()};
     // Mass is not need for static object
-    groundShapeDef.friction    = 0.3f;
-    groundShapeDef.restitution = 0.7f;
+    // groundShapeDef.friction    = 0.3f;
+    // groundShapeDef.restitution = 0.7f;
     b2CreatePolygonShape(groundBodyId, &groundShapeDef, &groundShape);
 
     // Ground 2 (box2d-related)
@@ -82,8 +82,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     b2Polygon const groundShape2    = {b2MakeBox(rectWidth / 2.f, rectHeight / 2.f)};
     b2ShapeDef      groundShapeDef2 = {b2DefaultShapeDef()};
     // Mass is not need for static object
-    groundShapeDef2.friction    = 0.3f;
-    groundShapeDef2.restitution = 0.7f;
+    // groundShapeDef2.friction    = 0.3f;
+    // groundShapeDef2.restitution = 0.7f;
     b2CreatePolygonShape(groundBodyId2, &groundShapeDef2, &groundShape2);
 
     // Create a dynamic box (box2d-related)
@@ -96,7 +96,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     b2Polygon const boxShape    = {b2MakeBox(squerWidth / 2.f, squerHeight / 2.f)};
     b2ShapeDef      boxShapeDef = {b2DefaultShapeDef()};
     boxShapeDef.density         = 1.f;
-    boxShapeDef.friction        = 0.7f;
+    // boxShapeDef.friction        = 0.7f;
     b2CreatePolygonShape(boxBodyId, &boxShapeDef, &boxShape);
 
     // Simulating setting (box2d-related)

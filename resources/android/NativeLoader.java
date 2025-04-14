@@ -13,6 +13,7 @@ class NativeLoader extends NativeActivity
     {
         super.onCreate(savedInstanceState);
         System.loadLibrary("${LIBNAME}");
+        CorrectScreen();
     }
 
     // Handling loss and regain of application focus
@@ -25,33 +26,36 @@ class NativeLoader extends NativeActivity
         }
     }
 
-    //   @Override public void onResume() {
-    //     super.onResume();
-    //     FullScreencall();
-    //   }
+    @Override public void onResume()
+    {
+        super.onResume();
+        FullScreencall();
+    }
 
-    //  public
-    //   void FullScreencall() {
-    //     if (Build.VERSION.SDK_INT > 11 &&
-    //         Build.VERSION.SDK_INT < 19) {  // lower api
-    //       View v = this.getWindow().getDecorView();
-    //       v.setSystemUiVisibility(View.GONE);
-    //     } else if (Build.VERSION.SDK_INT >= 19) {
-    //       // for new api versions.
-    //       View decorView = getWindow().getDecorView();
-    //       int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-    //                       View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-    //       decorView.setSystemUiVisibility(uiOptions);
-    //     }
-    //   }
+public
+    void FullScreencall()
+    {
+        if (Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19)
+        {  // lower api
+            View v = this.getWindow().getDecorView();
+            v.setSystemUiVisibility(View.GONE);
+        }
+        else if (Build.VERSION.SDK_INT >= 19)
+        {
+            // for new api versions.
+            View decorView = getWindow().getDecorView();
+            int  uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            decorView.setSystemUiVisibility(uiOptions);
+        }
+    }
 public
     void CorrectScreen()
     {
         this.getWindow().addFlags(LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         this.getWindow().getDecorView().setSystemUiVisibility(
-            View.SYSTEM_UI_FLAG_FULLSCREEN |
-            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+            View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
             View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
             View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
             View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
