@@ -106,7 +106,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
 
     [[maybe_unused]]
     bool const fex = FileExists("resource/TEST.txt");
-    // std::cout << fex << "dddddddddddddddddddddddddddddddd]\n";
+    // we have crash here bc of path finding of assets abs with Asan or Ubisan
     std::string const str {LoadFileText("resource/TEST.txt")};
 
     // Main loop
