@@ -59,7 +59,7 @@ option(WERROR_FLAG OFF "Warning as error on/off")
 # -Wold-style-cast # warn for c-style casts
 # -Wpedantic # warn if non-standard C++ is used
 # ${OS_ANDROID}:-Wno-main
-set(DBG_FLAGS "-DDEBUG;-Wall;-Wextra;-Wpedantic;-Wshadow;-Wconversion;-Wnon-virtual-dtor;-Wcast-align;-Wunused;-Woverloaded-virtual;-Wsign-conversion;-Wdouble-promotion;-Wformat=2;-Wimplicit-fallthrough;-Wsuggest-override;-Wnull-dereference;-Wold-style-cast;-Wpedantic"
+set(DBG_FLAGS "-DDEBUG;-Wall;-Wextra;-Wpedantic;-Wshadow;-Wconversion;-Wnon-virtual-dtor;-Wcast-align;-Wunused;-Woverloaded-virtual;-Wsign-conversion;-Wdouble-promotion;-Wformat=2;-Wimplicit-fallthrough;-Wsuggest-override;-Wnull-dereference;-Wold-style-cast"
   CACHE STRING "debug flags")
 
 # if werror is on add it to debug flags
@@ -123,6 +123,8 @@ set(LINK_VARS "raylib;box2d" CACHE STRING "the library linking variables")
 
 if(${PLATFORM} STREQUAL "Android")
   list(APPEND LINK_VARS "native_app_glue;log;android;EGL;GLESV2;OpenSLES")
+  list(APPEND DBG_FLAGS "-fPIC")
+  list(APPEND REL_FLAGS "-fPIC")
 endif(${PLATFORM} STREQUAL "Android")
 
 # ################### Packaging for release
@@ -134,16 +136,16 @@ set(SUPPORTMAIL "support@mycompany.com" CACHE STRING "")
 # ################### Android config
 set(LIBNAME "${P_OUT_NAME}")
 set(ANDROID_OUTPUT "${CMAKE_BINARY_DIR}/../App")
-set(APP_LABEL "Raylib" CACHE STRING "")
-set(APP_COMPANY_NAME "Nullref" CACHE STRING "")
-set(APP_PRODUCT_NAME "game" CACHE STRING "")
+set(APP_LABEL "raylibMobile" CACHE STRING "")
+set(APP_COMPANY_NAME "RealAhani" CACHE STRING "")
+set(APP_PRODUCT_NAME "app" CACHE STRING "")
 set(APP_PACKAGE "com.${APP_COMPANY_NAME}.${APP_PRODUCT_NAME}" CACHE STRING "")
 set(APP_VERSION_CODE "1")
 set(APP_VERSION_NAME "${P_VERSION}")
-set(APP_ORIENTATION "landscape" CACHE STRING "")
+set(APP_ORIENTATION "landscape" CACHE STRING "this can be portrait/landscape")
 set(APP_KEYSTORE_PASS "password" CACHE STRING "")
 set(JAVA_HOME "$ENV{JAVA_HOME}")
-set(ANDROID_PLATFORM "34")
+set(ANDROID_PLATFORM "0")
 set(ANDROID_ABI "arm64-v8a")
 set(ANDROID_NDK "$ENV{ANDROID_NDK_HOME}")
 set(ANDROID_PLATFORM_PATH "$ENV{ANDROID_SDK_HOME}")

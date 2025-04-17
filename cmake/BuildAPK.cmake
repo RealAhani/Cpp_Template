@@ -11,7 +11,7 @@ macro(BuildAPK target_link)
         foreach(P_ABI IN LISTS ANDROIDLISTS)
             add_custom_command(
                 OUTPUT "${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/App/lib/${P_ABI}"
-                COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/${P_ABI}/out/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/lib/lib${LIBNAME}.so" ${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/App/lib/${P_ABI})
+                COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/${P_ABI}/out/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/lib/lib${LIBNAME}.*" ${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/App/lib/${P_ABI})
             add_custom_target("copy_file${P_ABI}" ALL DEPENDS "${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/App/lib/${P_ABI}")
         endforeach(P_ABI IN LISTS ANDROIDLISTS)
 

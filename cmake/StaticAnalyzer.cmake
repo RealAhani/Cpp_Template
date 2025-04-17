@@ -55,7 +55,7 @@ macro(setting_enable_staticanalyzer target_link)
 
   # static_analyzer is OFF
   else()
-    # message("--------------------------------------------- CPP-Check ${target_link}:  OFF ")
+    message("--------------------------------------------- CPP-Check ${target_link}:  OFF ")
     message("--------------------------------------------- CLANG-TIDY ${target_link}: OFF ")
 
     # message("--------------------------------------------- CPP_LINT ${target_link}: OFF ")

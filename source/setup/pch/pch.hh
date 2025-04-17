@@ -19,17 +19,23 @@
 // raylib headers
 #include <raylib.h>
 #include <raymath.h>
+#include <rlgl.h>
 
 // C++ headers
 #include <iostream>
 #include <string>
 #include <string_view>
-#include <array>
-#include <vector>
-#include <fstream>
 #include <chrono>
 #include <mutex>
 #include <algorithm>
+#include <random>
+#include <vector>
+#include <array>
+#include <optional>
+#include <bitset>
+#include <fstream>
+#include <cassert>
+#include <cstdint>
 #include <map>
 #include <thread>
 #include <print>

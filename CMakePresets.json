@@ -132,7 +132,7 @@
                 "HAS_PCH": "ON",
                 "HAS_TEST": "OFF",
                 "HAS_UNITY_BUILD": "ON",
-                "HAS_PACKAGE": "ON"
+                "HAS_PACKAGE": "OFF"
             },
             "vendor": {
                 "microsoft.com/VisualStudioSettings/CMake/1.0": {
@@ -203,7 +203,7 @@
                 "HAS_PCH": "ON",
                 "HAS_TEST": "OFF",
                 "HAS_UNITY_BUILD": "ON",
-                "HAS_PACKAGE": "ON"
+                "HAS_PACKAGE": "OFF"
             }
         },
         {
@@ -219,7 +219,7 @@
                 "P_INTERNAL_LIB_TYPE": "STATIC",
                 "P_EXTERNAL_LIBS_TYPE": "STATIC",
                 "HAS_EXE": "OFF",
-                "HAS_LIB": "OFF",
+                "HAS_LIB": "ON",
                 "HAS_CONSOLE": "OFF",
                 "P_CXX_VERSION": "23",
                 "P_C_VERSION": "11",
@@ -238,7 +238,7 @@
                 "APP_LABEL": "APP",
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
-                "ANDROID_PLATFORM": "34",
+                "ANDROID_PLATFORM": "40",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -275,7 +275,7 @@
                 "APP_LABEL": "APP",
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
-                "ANDROID_PLATFORM": "34",
+                "ANDROID_PLATFORM": "40",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -312,7 +312,7 @@
                 "APP_LABEL": "APP",
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
-                "ANDROID_PLATFORM": "34",
+                "ANDROID_PLATFORM": "40",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -349,7 +349,7 @@
                 "APP_LABEL": "APP",
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
-                "ANDROID_PLATFORM": "34",
+                "ANDROID_PLATFORM": "40",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -386,7 +386,7 @@
                 "APP_LABEL": "APP",
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
-                "ANDROID_PLATFORM": "34",
+                "ANDROID_PLATFORM": "40",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "ON"
             }
@@ -398,20 +398,21 @@
             "displayName": "Windows Clang Safe",
             "configurePreset": "win-clang-safe",
             "configuration": "Debug",
-            "jobs": 12
+            "jobs": 16
         },
         {
             "name": "win-clang-test",
             "displayName": "Windows Clang Test",
             "configurePreset": "win-clang-test",
-            "configuration": "Debug"
+            "configuration": "Debug",
+            "jobs": 16
         },
         {
             "name": "win-clang-release",
             "displayName": "Windows Clang Release",
             "configurePreset": "win-clang-release",
             "configuration": "Release",
-            "jobs": 12
+            "jobs": 16
         },
         {
             "name": "unix-clang-safe",
