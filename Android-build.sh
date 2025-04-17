@@ -28,7 +28,7 @@ if [ "$1" == "Release" ]; then
 
     rm -rf ./build/Darwin/Other/Android/Build-App
 
-    adb uninstall com.Nullref.app
+    adb uninstall com.RealAhani.app
     adb install -r ./build/Darwin/Other/Android/App/bin/app.final.apk
 elif [ "$1" == "Debug" ]; then
     echo "Debug Build"
@@ -38,7 +38,7 @@ elif [ "$1" == "Debug" ]; then
     cmake --preset "Build-App" -DCMAKE_BUILD_TYPE=Debug
     cmake --build --preset "Build-App" --config Debug
 
-    adb uninstall com.Nullref.app
+    adb uninstall com.RealAhani.app
     adb install -r ./build/Darwin/Other/Android/App/bin/app.final.apk
 else
     echo "Error: Unknown argument. Debug or Release"
