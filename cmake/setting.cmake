@@ -118,7 +118,7 @@ set(P_EXTERNAL_LIBS_TYPE "STATIC" CACHE STRING "Fetched librareis type (STATIC/S
 # TAGS          = [raylib git tag;box2d git tag] e.g (version or master/main or comit hash)
 # LINKING_VARS  = [raylib;box2d]
 set(URLS "https://github.com/raysan5/raylib.git;https://github.com/erincatto/box2d.git" CACHE STRING "repositories usrls")
-set(TAGS "5.5;main" CACHE STRING "Tag that you want to fetch or branch name")
+set(TAGS "5.5;v3.1.0" CACHE STRING "Tag that you want to fetch or branch name")
 set(LINK_VARS "raylib;box2d" CACHE STRING "the library linking variables")
 
 if(${PLATFORM} STREQUAL "Android")

@@ -1,3 +1,4 @@
+// clang-format off
 package ${APP_PACKAGE};
 
 import android.os.Bundle;
@@ -9,10 +10,12 @@ import android.view.WindowManager.LayoutParams;
 public
 class NativeLoader extends NativeActivity
 {
+    static{
+        System.loadLibrary("${LIBNAME}");
+    }
     @Override protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        System.loadLibrary("${LIBNAME}");
         CorrectScreen();
     }
 
@@ -31,6 +34,12 @@ class NativeLoader extends NativeActivity
         super.onResume();
         FullScreencall();
     }
+
+    // @Override public void onDestroy(){
+    //     super.onDestroy();
+    //     finish();
+    // }
+
 
 public
     void FullScreencall()

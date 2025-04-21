@@ -118,6 +118,11 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
         {
             isQuit = true;
         }
+        if (IsKeyPressed(KEY_BACK))
+        {
+            // TODO: clean up then leave
+            break;
+        }
         // Update world state (box2d-related)
         b2World_Step(worldID, timeStep, subStepCount);
 
