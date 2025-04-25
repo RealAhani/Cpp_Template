@@ -5,7 +5,7 @@ macro(BuildAPK target_link)
 
         # after build add lib to the specific folder
         if(CMAKE_BUILD_TYPE STREQUAL "Release")
-            LIST(APPEND ANDROIDLISTS "armeabi-v7a;x86_64;x86")
+            # LIST(APPEND ANDROIDLISTS "armeabi-v7a;x86_64;x86")
         endif(CMAKE_BUILD_TYPE STREQUAL "Release")
 
         foreach(P_ABI IN LISTS ANDROIDLISTS)
@@ -60,20 +60,20 @@ macro(BuildAPK target_link)
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
                 "lib/arm64-v8a/*"
 
-                COMMAND
-                $ENV{BUILD_TOOLS}/aapt ARGS add
-                ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
-                "lib/armeabi-v7a/*"
+                # COMMAND
+                # $ENV{BUILD_TOOLS}/aapt ARGS add
+                # ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
+                # "lib/armeabi-v7a/*"
 
-                COMMAND
-                $ENV{BUILD_TOOLS}/aapt ARGS add
-                ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
-                "lib/x86_64/*"
+                # COMMAND
+                # $ENV{BUILD_TOOLS}/aapt ARGS add
+                # ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
+                # "lib/x86_64/*"
 
-                COMMAND
-                $ENV{BUILD_TOOLS}/aapt ARGS add
-                ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
-                "lib/x86/*"
+                # COMMAND
+                # $ENV{BUILD_TOOLS}/aapt ARGS add
+                # ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
+                # "lib/x86/*"
 
                 # align apk
                 COMMAND

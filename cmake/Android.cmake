@@ -91,7 +91,7 @@ macro(AndroidSetup target_link)
             COMMAND keytool ARGS -genkeypair -validity 1000 -dname
             "CN=${APP_COMPANY_NAME},O=Android,C=ES" -keystore
             ${ANDROID_OUTPUT}/key/key.keystore -storepass ${APP_KEYSTORE_PASS}
-            -keypass ${APP_KEYSTORE_PASS} -alias ${target_link}Key -keyalg RSA)
+            -keypass ${APP_KEYSTORE_PASS} -alias ${target_link}Key -keyalg RSA -deststoretype pkcs12)
         add_custom_target("generateKey" ALL DEPENDS "${ANDROID_OUTPUT}/key/key.keystore")
     endif()
 endmacro(AndroidSetup target_link)
