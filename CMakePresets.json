@@ -238,7 +238,8 @@
                 "APP_LABEL": "APP",
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
-                "ANDROID_PLATFORM": "34",
+                "ANDROID_PLATFORM": "35",
+                "OPENGL_ESV": "0x00040000",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -275,7 +276,8 @@
                 "APP_LABEL": "APP",
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
-                "ANDROID_PLATFORM": "34",
+                "ANDROID_PLATFORM": "35",
+                "OPENGL_ESV": "0x00040000",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -312,7 +314,8 @@
                 "APP_LABEL": "APP",
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
-                "ANDROID_PLATFORM": "34",
+                "ANDROID_PLATFORM": "35",
+                "OPENGL_ESV": "0x00040000",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -349,7 +352,8 @@
                 "APP_LABEL": "APP",
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
-                "ANDROID_PLATFORM": "34",
+                "ANDROID_PLATFORM": "35",
+                "OPENGL_ESV": "0x00040000",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -386,7 +390,8 @@
                 "APP_LABEL": "APP",
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
-                "ANDROID_PLATFORM": "34",
+                "ANDROID_PLATFORM": "35",
+                "OPENGL_ESV": "0x00040000",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "ON"
             }
