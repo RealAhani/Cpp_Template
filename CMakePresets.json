@@ -124,7 +124,7 @@
                 "P_INTERNAL_LIB_TYPE": "STATIC",
                 "HAS_EXE": "ON",
                 "HAS_LIB": "ON",
-                "HAS_CONSOLE": "OFF",
+                "HAS_CONSOLE": "ON",
                 "WERROR_FLAG": "OFF",
                 "HAS_STATIC_ANALYZER": "OFF",
                 "HAS_SAN": "OFF",
@@ -239,7 +239,7 @@
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
                 "ANDROID_PLATFORM": "35",
-                "OPENGL_ESV": "0x00040000",
+                "OPENGL_ESV": "0x00020000",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -257,7 +257,7 @@
                 "P_INTERNAL_LIB_TYPE": "STATIC",
                 "P_EXTERNAL_LIBS_TYPE": "STATIC",
                 "HAS_EXE": "OFF",
-                "HAS_LIB": "OFF",
+                "HAS_LIB": "ON",
                 "HAS_CONSOLE": "OFF",
                 "P_CXX_VERSION": "23",
                 "P_C_VERSION": "11",
@@ -277,7 +277,7 @@
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
                 "ANDROID_PLATFORM": "35",
-                "OPENGL_ESV": "0x00040000",
+                "OPENGL_ESV": "0x00020000",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -295,7 +295,7 @@
                 "P_INTERNAL_LIB_TYPE": "STATIC",
                 "P_EXTERNAL_LIBS_TYPE": "STATIC",
                 "HAS_EXE": "OFF",
-                "HAS_LIB": "OFF",
+                "HAS_LIB": "ON",
                 "HAS_CONSOLE": "OFF",
                 "P_CXX_VERSION": "23",
                 "P_C_VERSION": "11",
@@ -315,7 +315,7 @@
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
                 "ANDROID_PLATFORM": "35",
-                "OPENGL_ESV": "0x00040000",
+                "OPENGL_ESV": "0x00020000",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -333,7 +333,7 @@
                 "P_INTERNAL_LIB_TYPE": "STATIC",
                 "P_EXTERNAL_LIBS_TYPE": "STATIC",
                 "HAS_EXE": "OFF",
-                "HAS_LIB": "OFF",
+                "HAS_LIB": "ON",
                 "HAS_CONSOLE": "OFF",
                 "P_CXX_VERSION": "23",
                 "P_C_VERSION": "11",
@@ -353,7 +353,7 @@
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
                 "ANDROID_PLATFORM": "35",
-                "OPENGL_ESV": "0x00040000",
+                "OPENGL_ESV": "0x00020000",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "OFF"
             }
@@ -371,7 +371,7 @@
                 "P_INTERNAL_LIB_TYPE": "STATIC",
                 "P_EXTERNAL_LIBS_TYPE": "STATIC",
                 "HAS_EXE": "OFF",
-                "HAS_LIB": "OFF",
+                "HAS_LIB": "ON",
                 "HAS_CONSOLE": "OFF",
                 "P_CXX_VERSION": "23",
                 "P_C_VERSION": "11",
@@ -391,7 +391,7 @@
                 "APP_PRODUCT_NAME": "app",
                 "APP_KEYSTORE_PASS": "password",
                 "ANDROID_PLATFORM": "35",
-                "OPENGL_ESV": "0x00040000",
+                "OPENGL_ESV": "0x00020000",
                 "APP_ORIENTATION": "landscape",
                 "BUILD_APK": "ON"
             }

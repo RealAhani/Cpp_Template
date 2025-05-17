@@ -88,7 +88,7 @@ macro(AndroidSetup target_link)
     if(NOT EXISTS ${ANDROID_OUTPUT}/key/key.keystore)
         add_custom_command(
             OUTPUT "${ANDROID_OUTPUT}/key/key.keystore"
-            COMMAND keytool ARGS -genkeypair -keysize 2048 -validity 10000 -dname
+            COMMAND keytool${BINEXE} ARGS -genkeypair -keysize 2048 -validity 10000 -dname
             "CN=${APP_COMPANY_NAME},O=Android,C=ES" -keystore
             ${ANDROID_OUTPUT}/key/key.keystore -storepass ${APP_KEYSTORE_PASS}
             -keypass ${APP_KEYSTORE_PASS} -alias ${target_link}Key -keyalg RSA -deststoretype pkcs12)

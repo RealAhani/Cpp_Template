@@ -174,3 +174,7 @@ set(ANDROID_NDK "$ENV{ANDROID_NDK_HOME}")
 set(ANDROID_PLATFORM_PATH "$ENV{ANDROID_SDK_HOME}")
 set(CMAKE_ANDROID_STL_TYPE c++_static)
 option(BUILD_APK OFF "first build all android targets then set this to ON for build .apk")
+# ############################################################################################################
+# file extensions change based on OS(Android-Related)
+set(BINEXE "" CACHE STRING "")
+set(BINSHELL "" CACHE STRING "")

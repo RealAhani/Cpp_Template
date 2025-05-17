@@ -12,7 +12,7 @@ macro(BuildAPK target_link)
         foreach(P_ABI IN LISTS ANDROIDLISTS)
             add_custom_command(
                 OUTPUT "${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/App/lib/${P_ABI}"
-                COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/${P_ABI}/out/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/lib/lib${LIBNAME}.*" ${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/App/lib/${P_ABI})
+                COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/${P_ABI}/out/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/lib/lib${LIBNAME}.so" ${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/App/lib/${P_ABI})
             add_custom_target("copy_file${P_ABI}" ALL DEPENDS "${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/Other/Android/App/lib/${P_ABI}")
         endforeach(P_ABI IN LISTS ANDROIDLISTS)
 
@@ -33,7 +33,7 @@ macro(BuildAPK target_link)
                 COMMAND ${CMAKE_COMMAND} -E remove_directory "config_bak"
 
                 # generate R.java
-                COMMAND $ENV{BUILD_TOOLS}/aapt ARGS package -f -m -S "res" -J "src" -M
+                COMMAND $ENV{BUILD_TOOLS}/aapt${BINEXE} ARGS package -f -m -S "res" -J "src" -M
                 "AndroidManifest.xml" -I "${ANDROID_PLATFORM_PATH}/android.jar"
 
                 # ##compile java to class
@@ -41,7 +41,7 @@ macro(BuildAPK target_link)
 
                 # ## for java 8.0
                 # COMMAND
-                # javac ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
+                # javac${BINEXE} ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
                 # "${ANDROID_OUTPUT}/obj" -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar"
                 # -classpath "${ANDROID_PLATFORM_PATH}/android.jar:${ANDROID_OUTPUT}/jarLibs/*" -sourcepath
                 # "${ANDROID_OUTPUT}/src"
@@ -50,7 +50,7 @@ macro(BuildAPK target_link)
 
                 # ## for java > 8.0
                 COMMAND
-                javac ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
+                javac${BINEXE} ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
                 "${ANDROID_OUTPUT}/obj"
                 -bootclasspath "${ANDROID_PLATFORM_PATH}/android.jar"
                 -classpath "${ANDROID_OUTPUT}/jarLibs/*"
@@ -60,48 +60,48 @@ macro(BuildAPK target_link)
 
                 # compile .class to .dex
                 # ## with dx
-                # COMMAND $ENV{BUILD_TOOLS}/dx ARGS --verbose --dex
+                # COMMAND $ENV{BUILD_TOOLS}/dx${BINSHELL} ARGS --verbose --dex
                 # --output="${ANDROID_OUTPUT}/bin/classes.dex" "${ANDROID_OUTPUT}/obj"
                 # ## with d8
-                COMMAND $ENV{BUILD_TOOLS}/d8 ARGS "${ANDROID_OUTPUT}/obj/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/NativeLoader.class"
+                COMMAND $ENV{BUILD_TOOLS}/d8${BINSHELL} ARGS "${ANDROID_OUTPUT}/obj/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/NativeLoader.class"
                 --release --output "${ANDROID_OUTPUT}/bin"
                 --lib "${ANDROID_PLATFORM_PATH}/android.jar" --classpath "${ANDROID_OUTPUT}/obj"
 
                 # pack apk
                 COMMAND
-                $ENV{BUILD_TOOLS}/aapt ARGS package -f -M "AndroidManifest.xml" -S "res"
+                $ENV{BUILD_TOOLS}/aapt${BINEXE} ARGS package -f -M "AndroidManifest.xml" -S "res"
                 -A "${ANDROID_OUTPUT}/assets" -I "${ANDROID_PLATFORM_PATH}/android.jar" -F
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk ${ANDROID_OUTPUT}/bin
 
                 COMMAND
-                $ENV{BUILD_TOOLS}/aapt ARGS add
+                $ENV{BUILD_TOOLS}/aapt${BINEXE} ARGS add
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
-                "lib/arm64-v8a/*"
+                "lib/arm64-v8a/lib${LIBNAME}.so"
 
                 COMMAND
-                $ENV{BUILD_TOOLS}/aapt ARGS add
+                $ENV{BUILD_TOOLS}/aapt${BINEXE} ARGS add
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
-                "lib/armeabi-v7a/*"
+                "lib/armeabi-v7a/lib${LIBNAME}.so"
 
                 # COMMAND
-                # $ENV{BUILD_TOOLS}/aapt ARGS add
+                # $ENV{BUILD_TOOLS}/aapt${BINEXE} ARGS add
                 # ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
-                # "lib/x86_64/*"
+                # "lib/x86_64/lib${LIBNAME}.so"
 
                 # COMMAND
-                # $ENV{BUILD_TOOLS}/aapt ARGS add
+                # $ENV{BUILD_TOOLS}/aapt${BINEXE} ARGS add
                 # ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
-                # "lib/x86/*"
+                # "lib/x86/lib${LIBNAME}.so"
 
                 # align apk
                 COMMAND
-                $ENV{BUILD_TOOLS}/zipalign ARGS -f 4
+                $ENV{BUILD_TOOLS}/zipalign${BINEXE} ARGS -f 4
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.signed.apk
 
                 # sign apk
                 COMMAND
-                $ENV{BUILD_TOOLS}/apksigner ARGS sign --ks
+                $ENV{BUILD_TOOLS}/apksigner${BINSHELL} ARGS sign --ks
                 ${ANDROID_OUTPUT}/key/key.keystore --out
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.final.apk --ks-pass
                 pass:${APP_KEYSTORE_PASS} ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.signed.apk
@@ -124,14 +124,14 @@ macro(BuildAPK target_link)
                 COMMAND ${CMAKE_COMMAND} -E remove_directory "config_bak"
 
                 # generate R.java
-                COMMAND $ENV{BUILD_TOOLS}/aapt ARGS package -f -m -S "res" -J "src" -M
+                COMMAND $ENV{BUILD_TOOLS}/aapt${BINEXE} ARGS package -f -m -S "res" -J "src" -M
                 "AndroidManifest.xml" -I "${ANDROID_PLATFORM_PATH}/android.jar"
 
                 # compile java to class
-                # on line 115 you should change : with ; in windows
+                # on line 136 you should change : with ; if the host is windows
                 # ## for java == 8.0
                 # COMMAND
-                # javac ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
+                # javac${BINEXE} ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
                 # "${ANDROID_OUTPUT}/obj" -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar"
                 # -classpath "${ANDROID_PLATFORM_PATH}/android.jar:${ANDROID_OUTPUT}/jarLibs/*" -sourcepath
                 # "${ANDROID_OUTPUT}/src"
@@ -141,7 +141,7 @@ macro(BuildAPK target_link)
                 # ## compile java to class
                 # ## for java > 8.0
                 COMMAND
-                javac ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
+                javac${BINEXE} ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
                 "${ANDROID_OUTPUT}/obj"
                 -bootclasspath "${ANDROID_PLATFORM_PATH}/android.jar"
                 -classpath "${ANDROID_OUTPUT}/jarLibs/*"
@@ -152,34 +152,34 @@ macro(BuildAPK target_link)
                 # ## compile .class to .dex
 
                 # ## with .dx
-                # COMMAND $ENV{BUILD_TOOLS}/dx ARGS --verbose --dex
+                # COMMAND $ENV{BUILD_TOOLS}/dx${BINSHELL} ARGS --verbose --dex
                 # --output="${ANDROID_OUTPUT}/bin/classes.dex" "${ANDROID_OUTPUT}/obj"
 
                 # ## with d8
-                COMMAND $ENV{BUILD_TOOLS}/d8 ARGS "${ANDROID_OUTPUT}/obj/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/NativeLoader.class"
+                COMMAND $ENV{BUILD_TOOLS}/d8${BINSHELL} ARGS "${ANDROID_OUTPUT}/obj/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/NativeLoader.class"
                 --debug --output "${ANDROID_OUTPUT}/bin"
                 --lib "${ANDROID_PLATFORM_PATH}/android.jar" --classpath "${ANDROID_OUTPUT}/obj"
 
                 # pack apk
                 COMMAND
-                $ENV{BUILD_TOOLS}/aapt ARGS package -f -M "AndroidManifest.xml" -S "res"
+                $ENV{BUILD_TOOLS}/aapt${BINEXE} ARGS package -f -M "AndroidManifest.xml" -S "res"
                 -A "${ANDROID_OUTPUT}/assets" -I "${ANDROID_PLATFORM_PATH}/android.jar" -F
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk ${ANDROID_OUTPUT}/bin
 
                 COMMAND
-                $ENV{BUILD_TOOLS}/aapt ARGS add
+                $ENV{BUILD_TOOLS}/aapt${BINEXE} ARGS add
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
-                "lib/arm64-v8a/*"
+                "lib/arm64-v8a/lib${LIBNAME}.so"
 
                 # align apk
                 COMMAND
-                $ENV{BUILD_TOOLS}/zipalign ARGS -f 4
+                $ENV{BUILD_TOOLS}/zipalign${BINEXE} ARGS -f 4
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.signed.apk
 
                 # sign apk
                 COMMAND
-                $ENV{BUILD_TOOLS}/apksigner ARGS sign --ks
+                $ENV{BUILD_TOOLS}/apksigner${BINSHELL} ARGS sign --ks
                 ${ANDROID_OUTPUT}/key/key.keystore --out
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.final.apk --ks-pass
                 pass:${APP_KEYSTORE_PASS} ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.signed.apk
