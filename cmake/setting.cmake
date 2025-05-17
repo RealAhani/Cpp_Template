@@ -142,7 +142,29 @@ set(APP_PRODUCT_NAME "app" CACHE STRING "")
 set(APP_PACKAGE "com.${APP_COMPANY_NAME}.${APP_PRODUCT_NAME}" CACHE STRING "")
 set(APP_VERSION_CODE "1")
 set(APP_VERSION_NAME "${P_VERSION}")
+
+# ############################################################################################################
+# ### it can be landscape fullSensor sensorLandscape
+# | Value              | Description                                                                                                         |
+# | ------------------ | ------------------------------------------------------------------------------------------------------------------- |
+# | `unspecified`      | Default. The system chooses the orientation. Follows sensor and user settings.                                      |
+# | `landscape`        | Locks the activity in landscape mode (normal landscape, 90°).                                                       |
+# | `reverseLandscape` | Locks the activity in **reverse landscape** (270°).                                                                 |
+# | `sensorLandscape`  | Allows both **landscape** and **reverse landscape** depending on sensor.                                            |
+# | `portrait`         | Locks the activity in portrait mode (normal portrait, 0°).                                                          |
+# | `reversePortrait`  | Locks the activity in **reverse portrait** (180°).                                                                  |
+# | `sensorPortrait`   | Allows both **portrait** and **reverse portrait**.                                                                  |
+# | `user`             | Uses the user's preferred orientation setting (respects device rotation settings).                                  |
+# | `behind`           | Inherits the orientation from the activity below it in the activity stack.                                          |
+# | `fullSensor`       | Allows **all 4 orientations**: portrait, reverse portrait, landscape, reverse landscape.                            |
+# | `sensor`           | Allows portrait and landscape, but **not reverse** versions.                                                        |
+# | `nosensor`         | Ignores the sensor. Locks to the current orientation when the activity starts.                                      |
+# | `userLandscape`    | User preference for landscape, but excludes reverse. Introduced in API 18+.                                         |
+# | `userPortrait`     | User preference for portrait, but excludes reverse. Introduced in API 18+.                                          |
+# | `locked`           | Locks the orientation to the current rotation (whatever the screen is when activity starts). Introduced in API 18+. |
 set(APP_ORIENTATION "landscape" CACHE STRING "this can be portrait/landscape")
+
+# ############################################################################################################
 set(APP_KEYSTORE_PASS "password" CACHE STRING "")
 set(JAVA_HOME "$ENV{JAVA_HOME}")
 set(ANDROID_PLATFORM "35" CACHE STRING "the target android api")

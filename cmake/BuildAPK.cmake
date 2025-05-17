@@ -6,6 +6,7 @@ macro(BuildAPK target_link)
         # after build add lib to the specific folder
         if(CMAKE_BUILD_TYPE STREQUAL "Release")
             # LIST(APPEND ANDROIDLISTS "armeabi-v7a;x86_64;x86")
+            LIST(APPEND ANDROIDLISTS "armeabi-v7a")
         endif(CMAKE_BUILD_TYPE STREQUAL "Release")
 
         foreach(P_ABI IN LISTS ANDROIDLISTS)
@@ -35,19 +36,36 @@ macro(BuildAPK target_link)
                 COMMAND $ENV{BUILD_TOOLS}/aapt ARGS package -f -m -S "res" -J "src" -M
                 "AndroidManifest.xml" -I "${ANDROID_PLATFORM_PATH}/android.jar"
 
-                # compile java to class
-                # on line 43 you should change : with ; in windows
+                # ##compile java to class
+                # NOTE: on line 43 you should change : with ; in windows
+
+                # ## for java 8.0
+                # COMMAND
+                # javac ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
+                # "${ANDROID_OUTPUT}/obj" -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar"
+                # -classpath "${ANDROID_PLATFORM_PATH}/android.jar:${ANDROID_OUTPUT}/jarLibs/*" -sourcepath
+                # "${ANDROID_OUTPUT}/src"
+                # "${ANDROID_OUTPUT}/src/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/R.java"
+                # "${ANDROID_OUTPUT}/src/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/NativeLoader.java"
+
+                # ## for java > 8.0
                 COMMAND
                 javac ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
-                "${ANDROID_OUTPUT}/obj" -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar"
-                -classpath "${ANDROID_PLATFORM_PATH}/android.jar:${ANDROID_OUTPUT}/jarLibs/*" -sourcepath
-                "${ANDROID_OUTPUT}/src"
+                "${ANDROID_OUTPUT}/obj"
+                -bootclasspath "${ANDROID_PLATFORM_PATH}/android.jar"
+                -classpath "${ANDROID_OUTPUT}/jarLibs/*"
+                -sourcepath "${ANDROID_OUTPUT}/src"
                 "${ANDROID_OUTPUT}/src/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/R.java"
                 "${ANDROID_OUTPUT}/src/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/NativeLoader.java"
 
                 # compile .class to .dex
-                COMMAND $ENV{BUILD_TOOLS}/dx ARGS --verbose --dex
-                --output="${ANDROID_OUTPUT}/bin/classes.dex" "${ANDROID_OUTPUT}/obj"
+                # ## with dx
+                # COMMAND $ENV{BUILD_TOOLS}/dx ARGS --verbose --dex
+                # --output="${ANDROID_OUTPUT}/bin/classes.dex" "${ANDROID_OUTPUT}/obj"
+                # ## with d8
+                COMMAND $ENV{BUILD_TOOLS}/d8 ARGS "${ANDROID_OUTPUT}/obj/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/NativeLoader.class"
+                --release --output "${ANDROID_OUTPUT}/bin"
+                --lib "${ANDROID_PLATFORM_PATH}/android.jar" --classpath "${ANDROID_OUTPUT}/obj"
 
                 # pack apk
                 COMMAND
@@ -60,10 +78,10 @@ macro(BuildAPK target_link)
                 ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
                 "lib/arm64-v8a/*"
 
-                # COMMAND
-                # $ENV{BUILD_TOOLS}/aapt ARGS add
-                # ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
-                # "lib/armeabi-v7a/*"
+                COMMAND
+                $ENV{BUILD_TOOLS}/aapt ARGS add
+                ${ANDROID_OUTPUT}/bin/${APP_PRODUCT_NAME}.unsigned.apk
+                "lib/armeabi-v7a/*"
 
                 # COMMAND
                 # $ENV{BUILD_TOOLS}/aapt ARGS add
@@ -111,17 +129,36 @@ macro(BuildAPK target_link)
 
                 # compile java to class
                 # on line 115 you should change : with ; in windows
+                # ## for java == 8.0
+                # COMMAND
+                # javac ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
+                # "${ANDROID_OUTPUT}/obj" -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar"
+                # -classpath "${ANDROID_PLATFORM_PATH}/android.jar:${ANDROID_OUTPUT}/jarLibs/*" -sourcepath
+                # "${ANDROID_OUTPUT}/src"
+                # "${ANDROID_OUTPUT}/src/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/R.java"
+                # "${ANDROID_OUTPUT}/src/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/NativeLoader.java"
+
+                # ## compile java to class
+                # ## for java > 8.0
                 COMMAND
                 javac ARGS -Xlint:deprecation -verbose -source 1.8 -target 1.8 -d
-                "${ANDROID_OUTPUT}/obj" -bootclasspath "${JAVA_HOME}/jre/lib/rt.jar"
-                -classpath "${ANDROID_PLATFORM_PATH}/android.jar:${ANDROID_OUTPUT}/jarLibs/*" -sourcepath
-                "${ANDROID_OUTPUT}/src"
+                "${ANDROID_OUTPUT}/obj"
+                -bootclasspath "${ANDROID_PLATFORM_PATH}/android.jar"
+                -classpath "${ANDROID_OUTPUT}/jarLibs/*"
+                -sourcepath "${ANDROID_OUTPUT}/src"
                 "${ANDROID_OUTPUT}/src/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/R.java"
                 "${ANDROID_OUTPUT}/src/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/NativeLoader.java"
 
-                # compile .class to .dex
-                COMMAND $ENV{BUILD_TOOLS}/dx ARGS --verbose --dex
-                --output="${ANDROID_OUTPUT}/bin/classes.dex" "${ANDROID_OUTPUT}/obj"
+                # ## compile .class to .dex
+
+                # ## with .dx
+                # COMMAND $ENV{BUILD_TOOLS}/dx ARGS --verbose --dex
+                # --output="${ANDROID_OUTPUT}/bin/classes.dex" "${ANDROID_OUTPUT}/obj"
+
+                # ## with d8
+                COMMAND $ENV{BUILD_TOOLS}/d8 ARGS "${ANDROID_OUTPUT}/obj/com/${APP_COMPANY_NAME}/${APP_PRODUCT_NAME}/NativeLoader.class"
+                --debug --output "${ANDROID_OUTPUT}/bin"
+                --lib "${ANDROID_PLATFORM_PATH}/android.jar" --classpath "${ANDROID_OUTPUT}/obj"
 
                 # pack apk
                 COMMAND
