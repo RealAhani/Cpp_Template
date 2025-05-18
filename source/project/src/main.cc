@@ -32,7 +32,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     // Raylib window init
     SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_WINDOW_HIGHDPI | FLAG_VSYNC_HINT |
                    FLAG_FULLSCREEN_MODE);
-    InitWindow(0, 0, "Test");
+    InitWindow(0, 0, myproject::cmake::projectName.c_str());
 
     // Window properties
     [[maybe_unused]]

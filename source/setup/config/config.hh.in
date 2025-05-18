@@ -37,7 +37,7 @@ namespace myproject::cmake{
 #define MYOS @CURRENTOS@
 inline static constexpr int myOS {@CURRENTOS@};               // OS should be defined like this @CURRENTOS@ without any space
 
-inline static constexpr std::string_view projectName {"@P_NAME@"};        // project name 
+inline static const std::string projectName {"@P_NAME@"};        // project name 
 inline static constexpr std::string_view projectVersion {"@P_VERSION@"};  // project version
 inline static constexpr std::string_view platform {"@PLATFORM@"};  // current platform that run this
 

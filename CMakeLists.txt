@@ -68,15 +68,29 @@ else()
   message("--------------------------------------------- Arch: ${BUILD_ARCH} ")
 endif()
 
+if(${PLATFORM} STREQUAL "Android") # Android
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
   "$<0:>${CMAKE_BINARY_DIR}/out/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/${PRESET_NAME}/bin"
 ) # .exe and .dll
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY
-  "$<0:>${CMAKE_BINARY_DIR}/out/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/${PRESET_NAME}/lib"
+  "$<0:>${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/thirdParty/lib/Android/${CMAKE_BUILD_TYPE}"
 ) # .so and .dylib
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY
-  "$<0:>${CMAKE_BINARY_DIR}/out/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/${PRESET_NAME}/lib"
+  "$<0:>${CMAKE_SOURCE_DIR}/build/${CMAKE_HOST_SYSTEM_NAME}/thirdParty/lib/Android/${CMAKE_BUILD_TYPE}"
 ) # .lib and .a
+else() # Desktop
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
+  "$<0:>${CMAKE_BINARY_DIR}/out/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/${PRESET_NAME}/bin"
+) # .exe and .dll
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY
+  # "$<0:>${CMAKE_BINARY_DIR}/out/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/${PRESET_NAME}/lib"
+  "$<0:>${CMAKE_BINARY_DIR}/../thirdParty/lib/${CMAKE_HOST_SYSTEM_NAME}/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/${PRESET_NAME}"
+) # .so and .dylib
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY
+  # "$<0:>${CMAKE_BINARY_DIR}/out/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/${PRESET_NAME}/lib"
+  "$<0:>${CMAKE_BINARY_DIR}/../thirdParty/lib/${CMAKE_HOST_SYSTEM_NAME}/${BUILD_ARCH}_${CMAKE_BUILD_TYPE}/${PRESET_NAME}"
+) # .lib and .a
+endif(${PLATFORM} STREQUAL "Android")
 
 message("--------------------------------------------- C++ COMPILER ID: ${CMAKE_CXX_COMPILER_ID} ")
 message("--------------------------------------------- C++ COMPILER: ${CMAKE_CXX_COMPILER} ")
